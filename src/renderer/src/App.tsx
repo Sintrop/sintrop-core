@@ -1,14 +1,10 @@
-import { useTranslation } from 'react-i18next'
 import { WagmiProviderContainer } from './providers/wagmi'
+import { AppRoutes } from './routes'
 
 function App(): React.JSX.Element {
-  const { t } = useTranslation()
-
   return (
     <WagmiProviderContainer>
-      <div>
-        <p className="text-red-500">{t('helloWorld')}</p>
-      </div>
+      <AppRoutes />
     </WagmiProviderContainer>
   )
 }
