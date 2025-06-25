@@ -15,7 +15,7 @@ export function ScreenPage({ children, pageTitle }: Props): JSX.Element {
     <>
       <Header />
 
-      <main className="bg-gradient-to-b from-[#043832] to-[#1F5D38] flex w-screen h-screen">
+      <main className="bg-bg flex w-screen h-screen">
         <SideMenu />
 
         <div className="flex flex-col pt-20 pl-[300px] w-full">
