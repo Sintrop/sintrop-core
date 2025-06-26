@@ -8,6 +8,7 @@ export function Nav(): JSX.Element {
   return (
     <nav className="flex flex-col">
       <NavItem icon="dashboard" label="desktop" path="/" />
+      <NavItem icon="dashboard" label="App Store" path="/app-store" />
     </nav>
   )
 }
