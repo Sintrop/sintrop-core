@@ -1,6 +1,7 @@
 import { SEQUOIA_APP_STORE_ABI } from '@renderer/abis'
 import { APP_STORE_ADDRESS, SEQUOIA_APP_STORE_ADDRESS } from '@renderer/variables'
 import { JSX } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useChainId, useReadContract } from 'wagmi'
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
   store?: boolean
 }
 export function AppItem({ store, appId }: Props): JSX.Element {
+  const navigate = useNavigate()
   const chainId = useChainId()
   const { data } = useReadContract({
     address: chainId === 250225 ? APP_STORE_ADDRESS : SEQUOIA_APP_STORE_ADDRESS,
@@ -16,28 +18,38 @@ export function AppItem({ store, appId }: Props): JSX.Element {
     args: [appId]
   })
 
+  function handleGoToAppDetails(): void {
+    navigate(`/app-details/${appId}`)
+  }
+
   const appData = data as string[]
   if (!appData) return <div />
 
   if (store) {
     return (
-      <div className="flex flex-col rounded-2xl p-2 bg-card-2 w-[150px] h-[200px] overflow-hidden">
-        <div className="w-full h-[100px] bg-blue-950 rounded-xl">
+      <button
+        className="flex flex-col rounded-2xl p-2 bg-card-2 w-[150px] h-[200px] overflow-hidden hover:cursor-pointer"
+        onClick={handleGoToAppDetails}
+      >
+        <div className="w-full h-[150px] bg-blue-950 rounded-xl">
           <img src={appData[4]} className="w-full h-full rounded-2xl object-cover" />
         </div>
 
         <p className="font-bold text-white mt-5 text-center">{appData[2]}</p>
-      </div>
+      </button>
     )
   }
 
   return (
-    <div className="flex flex-col w-[150px] h-[180px]">
+    <button
+      className="flex flex-col w-[150px] h-[180px] hover:cursor-pointer"
+      onClick={handleGoToAppDetails}
+    >
       <div className="w-full h-[150px] bg-blue-950 rounded-2xl">
-          <img src={appData[4]} className="w-full h-full rounded-2xl object-cover" />
+        <img src={appData[4]} className="w-full h-full rounded-2xl object-cover" />
       </div>
 
       <p className="font-bold text-white mt-1 text-center">{appData[2]}</p>
-    </div>
+    </button>
   )
 }
