@@ -12,7 +12,6 @@ export function AppStorePage(): JSX.Element {
     functionName: 'impactAppsCount'
   })
 
-  console.log(data)
   return (
     <ScreenPage pageTitle="App Store">
       <div className="flex flex-col"></div>
