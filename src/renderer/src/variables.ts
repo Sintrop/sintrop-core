@@ -1,0 +1,2 @@
+export const APP_STORE_ADDRESS = import.meta.env.VITE_APP_STORE_ADDRESS
+export const SEQUOIA_APP_STORE_ADDRESS = import.meta.env.VITE_SEQUOIA_APP_STORE_ADDRESS
