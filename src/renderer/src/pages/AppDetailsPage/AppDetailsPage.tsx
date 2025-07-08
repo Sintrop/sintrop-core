@@ -1,24 +1,45 @@
-import { JSX } from 'react'
-import { useChainId, useReadContract } from 'wagmi'
+import { JSX, useState } from 'react'
+import { useChainId, useReadContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 import { useParams } from 'react-router-dom'
 import { ScreenPage } from '@renderer/components/ScreenPage/ScreenPage'
 import { APP_STORE_ADDRESS, SEQUOIA_APP_STORE_ADDRESS } from '@renderer/variables'
 import { SEQUOIA_APP_STORE_ABI } from '@renderer/abis'
 import { useTranslation } from 'react-i18next'
 import { formatUnits } from 'viem'
+import { TransactionLoading } from '@renderer/components/TransactionLoading/TransactionLoading'
 
 export function AppDetailsPage(): JSX.Element {
   const { t } = useTranslation()
   const { appId } = useParams()
   const chainId = useChainId()
-  const { data } = useReadContract({
-    address: chainId === 250225 ? APP_STORE_ADDRESS : SEQUOIA_APP_STORE_ADDRESS,
-    abi: chainId === 250225 ? SEQUOIA_APP_STORE_ABI : SEQUOIA_APP_STORE_ABI,
+
+  const addressToUse = chainId === 250225 ? APP_STORE_ADDRESS : SEQUOIA_APP_STORE_ADDRESS
+  const abiToUse = chainId === 250225 ? SEQUOIA_APP_STORE_ABI : SEQUOIA_APP_STORE_ABI
+  const { data, refetch } = useReadContract({
+    address: addressToUse,
+    abi: abiToUse,
     functionName: 'impactApps',
     args: [appId]
   })
 
-  console.log(data)
+  const [displayLoadingTx, setDisplayLoadingTx] = useState(false)
+  const { data: hash, writeContract, isPending } = useWriteContract()
+  const { isLoading, isSuccess, isError } = useWaitForTransactionReceipt({ hash })
+
+  function handleVoteApp(type: 'up' | 'down'): void {
+    setDisplayLoadingTx(true)
+    writeContract({
+      address: addressToUse,
+      abi: abiToUse,
+      functionName: 'voteForImpactApp',
+      args: [appId, type === 'up' ? 1 : 2]
+    })
+  }
+
+  function impactAppVoted(): void {
+    setDisplayLoadingTx(false)
+    refetch()
+  }
 
   const appData = data as string[]
   if (!appData) {
@@ -39,18 +60,38 @@ export function AppDetailsPage(): JSX.Element {
           <p className="text-gray-400">{appData[1]}</p>
 
           <div className="flex gap-5 mt-3">
-            <div className="w-[150px] h-16 rounded-2xl flex flex-col items-center justify-center bg-red-400">
+            <button
+              className="w-[150px] h-18 rounded-2xl flex flex-col items-center justify-center bg-red-400 hover:cursor-pointer"
+              onClick={() => handleVoteApp('down')}
+            >
               <p className="font-bold text-white text-xl">{formatUnits(BigInt(appData[7]), 0)}</p>
-              <p className="text-white">{t('votesDown')}</p>
-            </div>
+              <p className="text-white text-sm">{t('votesDown')}</p>
+              <p className="text-gray-200 text-xs">{t('clickToVote')}</p>
+            </button>
 
-            <div className="w-[150px] h-16 rounded-2xl flex flex-col items-center justify-center bg-green-500">
+            <button
+              className="w-[150px] h-18 rounded-2xl flex flex-col items-center justify-center bg-green-500 hover:cursor-pointer"
+              onClick={() => handleVoteApp('up')}
+            >
               <p className="font-bold text-white text-xl">{formatUnits(BigInt(appData[8]), 0)}</p>
               <p className="text-white">{t('votesUp')}</p>
-            </div>
+              <p className="text-gray-200 text-xs">{t('clickToVote')}</p>
+            </button>
           </div>
         </div>
       </div>
+
+      {displayLoadingTx && (
+        <TransactionLoading
+          close={() => setDisplayLoadingTx(false)}
+          ok={impactAppVoted}
+          isError={isError}
+          isPending={isPending}
+          isSuccess={isSuccess}
+          loading={isLoading}
+          transactionHash={hash}
+        />
+      )}
     </ScreenPage>
   )
 }
