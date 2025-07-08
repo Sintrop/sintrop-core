@@ -18,7 +18,8 @@ export function TransactionLoading({
   isPending,
   isError,
   isSuccess,
-  ok
+  ok,
+  close
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
@@ -38,21 +39,17 @@ export function TransactionLoading({
           </div>
         )}
 
-        {isError && (
-          <div className="flex flex-col items-center">
-            <p className="text-red-500">{t('error')}</p>
-          </div>
-        )}
-
         {isSuccess && (
           <div className="flex flex-col items-center">
-            <p className="text-green-primary">{t('transactionCompletedSuccessfully')}</p>
+            <p className="text-green-600">{t('transactionCompletedSuccessfully')}</p>
           </div>
         )}
 
         {transactionHash && (
           <div className="flex flex-col items-center">
-            <p className="text-white text-ellipsis truncate text-sm mt-5">{transactionHash}</p>
+            <p className="text-white text-ellipsis truncate text-sm mt-5 max-w-90">
+              {transactionHash}
+            </p>
             <p className="text-gray-400 text-xs">{t('transactionHash')}</p>
           </div>
         )}
@@ -64,6 +61,19 @@ export function TransactionLoading({
               onClick={ok}
             >
               {t('continue')}
+            </button>
+          </div>
+        )}
+
+        {isError && (
+          <div className="flex flex-col items-center">
+            <p className="text-red-500">{t('error')}</p>
+
+            <button
+              className="text-white px-10 h-10 rounded-2xl bg-green-600 font-semibold hover:cursor-pointer"
+              onClick={close}
+            >
+              {t('close')}
             </button>
           </div>
         )}
