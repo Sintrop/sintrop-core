@@ -2,20 +2,28 @@ import { JSX, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAccount, useBalance } from 'wagmi'
 import { FaEyeSlash, FaRegEye } from 'react-icons/fa'
+import { MdRefresh } from 'react-icons/md'
+import { format, isToday } from 'date-fns'
 
 import ImageCoin from '@renderer/assets/images/icon-chain.png'
 
 export function Balance(): JSX.Element {
   const { t } = useTranslation()
   const [viewBalance, setViewBalance] = useState(false)
+  const [lastUpdate, setLastUpdate] = useState(new Date())
   const { address } = useAccount()
-  const { data } = useBalance({ address })
+  const { data, refetch, isLoading } = useBalance({ address })
 
   function toggleViewBalance(): void {
     setViewBalance((value) => !value)
   }
 
   const balance = data ? parseFloat(data.formatted) : 0
+
+  async function handleRefreshBalance(): Promise<void> {
+    await refetch()
+    setLastUpdate(new Date())
+  }
 
   return (
     <div>
@@ -48,9 +56,20 @@ export function Balance(): JSX.Element {
           </button>
         </div>
 
-        {/* <p className="text-gray-300 text-xs mt-5">
-          {t('lastUpdate')}: {t('today')} {format(new Date(), 'kk:mm')}
-        </p> */}
+        <div className="flex w-full justify-end items-center gap-3">
+          <p className="text-gray-300 text-xs">
+            {t('lastUpdate')}: {isToday(lastUpdate) ? t('today') : format(lastUpdate, 'dd/MM/yyyy')}{' '}
+            {format(lastUpdate, 'kk:mm')}
+          </p>
+
+          <button
+            className="flex hover:cursor-pointer disabled:cursor-default"
+            onClick={handleRefreshBalance}
+            disabled={isLoading}
+          >
+            <MdRefresh color="white" size={25} className={`${isLoading && 'animate-spin'}`} />
+          </button>
+        </div>
       </div>
     </div>
   )
