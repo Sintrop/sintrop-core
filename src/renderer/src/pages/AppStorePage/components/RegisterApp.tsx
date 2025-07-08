@@ -1,4 +1,5 @@
 import { SEQUOIA_APP_STORE_ABI } from '@renderer/abis'
+import { TransactionLoading } from '@renderer/components/TransactionLoading/TransactionLoading'
 import { APP_STORE_ADDRESS, SEQUOIA_APP_STORE_ADDRESS } from '@renderer/variables'
 import { JSX, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -14,6 +15,8 @@ export function RegisterApp(): JSX.Element {
   const [externalLink, setExternalLink] = useState<string>('')
   const [contracts, setContracts] = useState<string[]>([])
   const [contractAddress, setContractAddress] = useState<string>('')
+
+  const [displayLoadingTx, setDisplayLoadingTx] = useState(false)
 
   const chainId = useChainId()
   const { writeContract, data: hash, isPending } = useWriteContract()
@@ -41,6 +44,7 @@ export function RegisterApp(): JSX.Element {
     if (!icon.trim()) return
     if (contracts.length === 0) return
 
+    setDisplayLoadingTx(true)
     writeContract({
       address: chainId === 250225 ? APP_STORE_ADDRESS : SEQUOIA_APP_STORE_ADDRESS,
       abi: chainId === 250225 ? SEQUOIA_APP_STORE_ABI : SEQUOIA_APP_STORE_ABI,
@@ -137,17 +141,22 @@ export function RegisterApp(): JSX.Element {
               className="px-5 h-10 bg-green-primary text-white rounded-2xl mt-10 hover:cursor-pointer"
               onClick={handleRegisterApp}
             >
-              {isPending && 'pending'}
-              {isLoading && 'confirming'}
-              {!isPending && !isLoading && t('registerApp')}
+              {t('registerApp')}
             </button>
-
-            <p className="text-white mt-5">
-              {isSuccess && 'success transaction'}
-              {isError && 'error on transaction'}
-            </p>
           </div>
         </div>
+      )}
+
+      {displayLoadingTx && (
+        <TransactionLoading
+          transactionHash={hash}
+          loading={isLoading}
+          isPending={isPending}
+          isError={isError}
+          isSuccess={isSuccess}
+          ok={() => setDisplayLoadingTx(false)}
+          close={() => setDisplayLoadingTx(false)}
+        />
       )}
     </div>
   )

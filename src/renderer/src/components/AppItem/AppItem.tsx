@@ -18,6 +18,8 @@ export function AppItem({ store, appId }: Props): JSX.Element {
     args: [appId]
   })
 
+  console.log(data)
+
   function handleGoToAppDetails(): void {
     navigate(`/app-details/${appId}`)
   }
