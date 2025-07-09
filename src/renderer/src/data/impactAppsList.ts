@@ -2,7 +2,7 @@ import GlobalPlantCatalogJson from '../../../impactApps/testnet/GlobalPlantCatal
 
 export const impactAppsList = [
   {
-    id: 1,
+    id: 2,
     name: 'Global Plant Catalog',
     mainnet: false,
     contracts: [

@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next'
 import { formatUnits } from 'viem'
 import { TransactionLoading } from '@renderer/components/TransactionLoading/TransactionLoading'
 import { AppProps } from '@renderer/types/app'
+import { Contracts } from './components/Contracts/Contracts'
 
 export function AppDetailsPage(): JSX.Element {
   const { t } = useTranslation()
@@ -111,6 +112,11 @@ export function AppDetailsPage(): JSX.Element {
             {appData?.externalLink}
           </p>
         </div>
+      </div>
+
+      <div className="flex flex-col gap-1">
+        <p className="text-gray-300 text-sm">{t('contracts')}</p>
+        <Contracts contracts={appData.contractAddresses} appId={parseInt(appId as string)} />
       </div>
 
       {displayLoadingTx && (
