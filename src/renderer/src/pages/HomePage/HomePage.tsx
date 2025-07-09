@@ -8,7 +8,7 @@ export function HomePage(): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <ScreenPage pageTitle="Home">
+    <ScreenPage pageTitle="Overview">
       <Balance />
       <SendTransaction />
     </ScreenPage>
