@@ -2,6 +2,7 @@ import { JSX } from 'react'
 import { useNavigate } from 'react-router-dom'
 import LogoSintrop from '../../assets/images/white-logo.png'
 import { ConnectButton } from './components/ConnectButton'
+import { ChainSwitch } from './components/ChainSwitch'
 
 export function Header(): JSX.Element {
   const navigate = useNavigate()
@@ -18,6 +19,7 @@ export function Header(): JSX.Element {
         </button>
 
         <div className="flex items-center gap-5">
+          <ChainSwitch />
           <ConnectButton />
         </div>
       </div>
