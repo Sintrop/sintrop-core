@@ -4,6 +4,8 @@ import { SideMenu } from '../SideMenu/SideMenu'
 import { PageTitle } from '../PageTitle/PageTitle'
 import { InfoBar } from './components/InfoBar'
 import { NavBtns } from './components/NavBtns'
+import { useChainId } from 'wagmi'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   pageTitle: string
@@ -11,6 +13,9 @@ interface Props {
 }
 
 export function ScreenPage({ children, pageTitle }: Props): JSX.Element {
+  const chainId = useChainId()
+  const { t } = useTranslation()
+
   return (
     <>
       <Header />
@@ -25,6 +30,12 @@ export function ScreenPage({ children, pageTitle }: Props): JSX.Element {
             <div className="flex flex-col gap-1">
               <NavBtns />
               <PageTitle title={pageTitle} />
+
+              {chainId === 1600 && (
+                <div className="px-10 h-10 rounded-2xl bg-red-400 flex items-center w-fit">
+                  <p className="text-white">{t('youAreInSequoiaTestnet')}</p>
+                </div>
+              )}
             </div>
             {children}
           </div>
