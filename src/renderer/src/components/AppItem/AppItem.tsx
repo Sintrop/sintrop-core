@@ -1,4 +1,5 @@
 import { SEQUOIA_APP_STORE_ABI } from '@renderer/abis'
+import { AppProps } from '@renderer/types/app'
 import { APP_STORE_ADDRESS, SEQUOIA_APP_STORE_ADDRESS } from '@renderer/variables'
 import { JSX } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -14,17 +15,16 @@ export function AppItem({ store, appId }: Props): JSX.Element {
   const { data } = useReadContract({
     address: chainId === 250225 ? APP_STORE_ADDRESS : SEQUOIA_APP_STORE_ADDRESS,
     abi: chainId === 250225 ? SEQUOIA_APP_STORE_ABI : SEQUOIA_APP_STORE_ABI,
-    functionName: 'impactApps',
+    functionName: 'getImpactApp',
     args: [appId]
   })
-
-  console.log(data)
 
   function handleGoToAppDetails(): void {
     navigate(`/app-details/${appId}`)
   }
 
-  const appData = data as string[]
+  const appData = data as AppProps
+
   if (!appData) return <div />
 
   if (store) {
@@ -34,10 +34,10 @@ export function AppItem({ store, appId }: Props): JSX.Element {
         onClick={handleGoToAppDetails}
       >
         <div className="w-full h-[150px] bg-blue-950 rounded-xl">
-          <img src={appData[4]} className="w-full h-full rounded-2xl object-cover" />
+          <img src={appData.icon} className="w-full h-full rounded-2xl object-cover" />
         </div>
 
-        <p className="font-bold text-white mt-5 text-center">{appData[2]}</p>
+        <p className="font-bold text-white mt-5 text-center">{appData.name}</p>
       </button>
     )
   }
@@ -48,10 +48,10 @@ export function AppItem({ store, appId }: Props): JSX.Element {
       onClick={handleGoToAppDetails}
     >
       <div className="w-full h-[150px] bg-blue-950 rounded-2xl">
-        <img src={appData[4]} className="w-full h-full rounded-2xl object-cover" />
+        <img src={appData.icon} className="w-full h-full rounded-2xl object-cover" />
       </div>
 
-      <p className="font-bold text-white mt-1 text-center">{appData[2]}</p>
+      <p className="font-bold text-white mt-1 text-center">{appData.name}</p>
     </button>
   )
 }

@@ -16,6 +16,7 @@ export function AppStorePage(): JSX.Element {
   })
 
   const appsCount = data ? parseInt(formatUnits(BigInt(data as string), 0)) : 0
+  console.log(appsCount)
   const appsIds = Array.from({ length: appsCount }, (_, i) => i + 1).reverse()
 
   return (
