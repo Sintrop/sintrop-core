@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { JSX, useEffect } from 'react'
+import { JSX, useEffect, useState } from 'react'
 import { ContractListProps, MethodAbiProps } from '@renderer/types/contract'
 import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
+import { TransactionLoading } from '@renderer/components/TransactionLoading/TransactionLoading'
 
 interface Props {
   method: MethodAbiProps
@@ -10,10 +11,12 @@ interface Props {
 }
 
 export function WriteMethodContract({ contract, method, args }: Props): JSX.Element {
-  const { writeContract, data: hash, isError, error, isPending } = useWriteContract()
-  const { isLoading, isSuccess, error: errorTransaction } = useWaitForTransactionReceipt({ hash })
+  const { writeContract, data: hash, isError, isPending } = useWriteContract()
+  const { isLoading, isSuccess } = useWaitForTransactionReceipt({ hash })
+  const [displayLoadingTx, setDisplayLoadingTx] = useState(false)
 
   useEffect(() => {
+    setDisplayLoadingTx(true)
     writeContract({
       //@ts-ignore
       address: contract.address,
@@ -23,19 +26,23 @@ export function WriteMethodContract({ contract, method, args }: Props): JSX.Elem
     })
   }, [])
 
+  function transactionSuccess(): void {
+    setDisplayLoadingTx(false)
+  }
+
   return (
     <div className="flex flex-col">
-      {isPending && <div className="w-8 h-8 bg-green-500 animate-spin" />}
-      {isLoading && <div className="w-8 h-8 bg-green-500 animate-spin" />}
-      {hash && (
-        <div className="flex flex-col">
-          <p className="text-white">Transaction hash: {hash}</p>
-          {isLoading && <p className="text-white">Confirming transaction....</p>}
-          {isSuccess && <p className="text-green-500">Transaction confirmed!</p>}
-        </div>
+      {displayLoadingTx && (
+        <TransactionLoading
+          close={() => setDisplayLoadingTx(false)}
+          ok={transactionSuccess}
+          isError={isError}
+          isPending={isPending}
+          isSuccess={isSuccess}
+          loading={isLoading}
+          transactionHash={hash}
+        />
       )}
-      {isError && <p className="text-red-500">{error.message}</p>}
-      {errorTransaction && <p className="text-red-500">{errorTransaction.message}</p>}
     </div>
   )
 }
