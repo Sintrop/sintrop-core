@@ -5,6 +5,7 @@ import { HomePage } from './pages/HomePage/HomePage'
 import { AppStorePage } from './pages/AppStorePage/AppStorePage'
 import { AppDetailsPage } from './pages/AppDetailsPage/AppDetailsPage'
 import { ImpactAppsPage } from './pages/ImpactAppsPage/ImpactAppsPage'
+import { NetworkPage } from './pages/NetworkPage/NetworkPage'
 
 export function AppRoutes(): React.JSX.Element {
   return (
@@ -14,6 +15,7 @@ export function AppRoutes(): React.JSX.Element {
         <Route path="/impact-apps" element={<ImpactAppsPage />} />
         <Route path="/app-store" element={<AppStorePage />} />
         <Route path="/app-details/:appId" element={<AppDetailsPage />} />
+        <Route path="/network" element={<NetworkPage />} />
       </Routes>
     </Router>
   )

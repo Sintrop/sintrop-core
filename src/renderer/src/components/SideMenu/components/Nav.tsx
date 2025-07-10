@@ -10,6 +10,7 @@ export function Nav(): JSX.Element {
       <NavItem icon="dashboard" label="Overview" path="/" />
       <NavItem icon="dashboard" label="Impact Apps" path="/impact-apps" />
       <NavItem icon="dashboard" label="App Store" path="/app-store" />
+      <NavItem icon="dashboard" label="Network" path="/network" />
     </nav>
   )
 }
