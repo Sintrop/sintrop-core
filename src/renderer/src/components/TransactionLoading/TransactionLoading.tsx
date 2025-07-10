@@ -1,5 +1,6 @@
 import { JSX } from 'react'
 import { useTranslation } from 'react-i18next'
+import { MdClose } from 'react-icons/md'
 
 interface Props {
   transactionHash?: `0x${string}`
@@ -25,7 +26,10 @@ export function TransactionLoading({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50">
-      <div className="bg-card-2 p-6 rounded-2xl shadow-2xl w-96">
+      <div className="bg-card-2 p-6 rounded-2xl shadow-2xl w-96 relative">
+        <button className="absolute top-3 right-3 hover:cursor-pointer" onClick={close}>
+          <MdClose size={25} color="white" />
+        </button>
         {isPending && (
           <div className="w-full h-20 flex flex-col items-center justify-center">
             <p className="text-white">{t('confirmInYourWallet')}...</p>
