@@ -3,6 +3,8 @@ import { TransactionLoading } from '@renderer/components/TransactionLoading/Tran
 import { APP_STORE_ADDRESS, SEQUOIA_APP_STORE_ADDRESS } from '@renderer/variables'
 import { JSX, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FaTrash } from 'react-icons/fa'
+import { MdClose } from 'react-icons/md'
 import { useChainId, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 
 export function RegisterApp(): JSX.Element {
@@ -56,93 +58,102 @@ export function RegisterApp(): JSX.Element {
   return (
     <div className="flex flex-col">
       <button
-        className="w-full h-10 flex justify-between items-center px-5 text-gray-400"
+        className="px-10 h-10 w-fit rounded-2xl flex justify-between items-center text-white bg-green-600 hover:cursor-pointer"
         onClick={toggleOpenForm}
       >
-        {t('registerApp')}
+        {t('registerNewApp')}
       </button>
 
       {openForm && (
-        <div className="flex gap-10">
-          <div className="flex flex-col">
-            <label className="text-gray-400">{t('name')}:</label>
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-[300px] px-3 h-10 rounded-2xl bg-card-2 text-white"
-              placeholder={t('typeHere')}
-            />
-
-            <label className="text-gray-400 mt-3">{t('description')}:</label>
-            <input
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="w-[300px] px-3 h-10 rounded-2xl bg-card-2 text-white"
-              placeholder={t('typeHere')}
-            />
-
-            <label className="text-gray-400 mt-3">{t('iconURL')}:</label>
-            <input
-              value={icon}
-              onChange={(e) => setIcon(e.target.value)}
-              className="w-[300px] px-3 h-10 rounded-2xl bg-card-2 text-white"
-              placeholder={t('typeHere')}
-            />
-
-            <label className="text-gray-400 mt-3">{t('repositoryUrl')}:</label>
-            <input
-              value={repositoryUrl}
-              onChange={(e) => setRepositoryUrl(e.target.value)}
-              className="w-[300px] px-3 h-10 rounded-2xl bg-card-2 text-white"
-              placeholder={t('typeHere')}
-            />
-
-            <label className="text-gray-400 mt-3">{t('externalLink')}:</label>
-            <input
-              value={externalLink}
-              onChange={(e) => setExternalLink(e.target.value)}
-              className="w-[300px] px-3 h-10 rounded-2xl bg-card-2 text-white"
-              placeholder={t('typeHere')}
-            />
-          </div>
-
-          <div className="flex flex-col">
-            <p className="text-gray-400">{t('contracts')}</p>
-
-            {contracts.map((item, index) => (
-              <div key={index} className="flex items-center mb-2 gap-5">
-                <p className="text-white">{item}</p>
-                <button
-                  className="w-10 h-10 bg-red-500 hover:cursor-pointer"
-                  onClick={() => removeContract(item)}
-                >
-                  rem
-                </button>
-              </div>
-            ))}
-
-            <div className="flex gap-5">
-              <label className="text-gray-400 mt-3">{t('contractAddress')}:</label>
-              <input
-                value={contractAddress}
-                onChange={(e) => setContractAddress(e.target.value)}
-                className="w-[300px] px-3 h-10 rounded-2xl bg-card-2 text-white"
-                placeholder={t('typeHere')}
-              />
-              <button
-                className="px-5 h-10 bg-green-primary text-white rounded-2xl hover:cursor-pointer"
-                onClick={handleAddContract}
-              >
-                {t('addContract')}
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50">
+          <div className="bg-card-2 p-6 rounded-2xl shadow-2xl w-[800px] h-[500px]">
+            <div className="flex items-center justify-between w-full mb-5">
+              <div className="w-5" />
+              <p className="text-white">{t('registerApp')}</p>
+              <button onClick={() => setOpenForm(false)} className="hover:cursor-pointer">
+                <MdClose color="white" size={25} />
               </button>
             </div>
+            <div className="flex gap-10">
+              <div className="flex flex-col">
+                <label className="text-gray-400">{t('name')}:</label>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-[300px] px-3 h-10 rounded-2xl bg-card-3 text-white"
+                  placeholder={t('typeHere')}
+                />
 
-            <button
-              className="px-5 h-10 bg-green-primary text-white rounded-2xl mt-10 hover:cursor-pointer"
-              onClick={handleRegisterApp}
-            >
-              {t('registerApp')}
-            </button>
+                <label className="text-gray-400 mt-3">{t('description')}:</label>
+                <input
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className="w-[300px] px-3 h-10 rounded-2xl bg-card-3 text-white"
+                  placeholder={t('typeHere')}
+                />
+
+                <label className="text-gray-400 mt-3">{t('iconURL')}:</label>
+                <input
+                  value={icon}
+                  onChange={(e) => setIcon(e.target.value)}
+                  className="w-[300px] px-3 h-10 rounded-2xl bg-card-3 text-white"
+                  placeholder={t('typeHere')}
+                />
+
+                <label className="text-gray-400 mt-3">{t('repositoryUrl')}:</label>
+                <input
+                  value={repositoryUrl}
+                  onChange={(e) => setRepositoryUrl(e.target.value)}
+                  className="w-[300px] px-3 h-10 rounded-2xl bg-card-3 text-white"
+                  placeholder={t('typeHere')}
+                />
+
+                <label className="text-gray-400 mt-3">{t('externalLink')}:</label>
+                <input
+                  value={externalLink}
+                  onChange={(e) => setExternalLink(e.target.value)}
+                  className="w-[300px] px-3 h-10 rounded-2xl bg-card-3 text-white"
+                  placeholder={t('typeHere')}
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <p className="text-gray-400">{t('contracts')}</p>
+
+                <div className="flex flex-col max-h-[200px] overflow-auto gap-3 mb-5">
+                  {contracts.map((item, index) => (
+                    <div key={index} className="flex items-center gap-5">
+                      <p className="text-white text-ellipsis truncate max-w-[85%]">{item}</p>
+                      <button className="hover:cursor-pointer" onClick={() => removeContract(item)}>
+                        <FaTrash color="red" size={20} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex gap-5">
+                  <input
+                    value={contractAddress}
+                    onChange={(e) => setContractAddress(e.target.value)}
+                    className="w-[250px] px-3 h-10 rounded-2xl bg-card-3 text-white"
+                    placeholder={t('typeAddressHere')}
+                  />
+                  <button
+                    className="px-5 h-10 bg-green-primary text-white rounded-2xl hover:cursor-pointer"
+                    onClick={handleAddContract}
+                  >
+                    {t('addContract')}
+                  </button>
+                </div>
+
+                <button
+                  className="px-10 w-[400px] h-10 bg-green-primary text-white rounded-2xl mt-10 hover:cursor-pointer"
+                  onClick={handleRegisterApp}
+                >
+                  {t('registerApp')}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -154,7 +165,10 @@ export function RegisterApp(): JSX.Element {
           isPending={isPending}
           isError={isError}
           isSuccess={isSuccess}
-          ok={() => setDisplayLoadingTx(false)}
+          ok={() => {
+            setDisplayLoadingTx(false)
+            setOpenForm(false)
+          }}
           close={() => setDisplayLoadingTx(false)}
         />
       )}

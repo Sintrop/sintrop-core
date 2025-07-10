@@ -21,7 +21,9 @@ export function AppStorePage(): JSX.Element {
 
   return (
     <ScreenPage pageTitle="App Store">
-      <RegisterApp />
+      <div className="w-full flex justify-end">
+        <RegisterApp />
+      </div>
 
       <div className="flex flex-wrap gap-5">
         {appsIds.map((item, index) => (

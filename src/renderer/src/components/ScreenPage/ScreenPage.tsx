@@ -32,8 +32,8 @@ export function ScreenPage({ children, pageTitle }: Props): JSX.Element {
               <PageTitle title={pageTitle} />
 
               {chainId === 1600 && (
-                <div className="px-10 h-10 rounded-2xl bg-red-400 flex items-center w-fit">
-                  <p className="text-white">{t('youAreInSequoiaTestnet')}</p>
+                <div className="px-10 h-10 rounded-2xl border border-red-500 flex items-center w-fit mt-3">
+                  <p className="text-red-500">Sequoia Testnet</p>
                 </div>
               )}
             </div>
