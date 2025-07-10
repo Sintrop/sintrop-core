@@ -41,7 +41,9 @@ export function ContractItem({ address, appId }: Props): JSX.Element {
         disabled={methods.length === 0}
         onClick={toggleShowMethods}
       >
-        <p className="text-white">{address}</p>
+        <p className="text-white">
+          {address} {contract && `- (${contract.name})`}
+        </p>
       </button>
 
       {showMethods && (
