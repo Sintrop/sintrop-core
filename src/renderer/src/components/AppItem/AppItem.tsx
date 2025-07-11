@@ -33,11 +33,11 @@ export function AppItem({ store, appId }: Props): JSX.Element {
         className="flex flex-col rounded-2xl p-2 bg-card-2 w-[150px] h-[200px] overflow-hidden hover:cursor-pointer"
         onClick={handleGoToAppDetails}
       >
-        <div className="w-full h-[150px] bg-blue-950 rounded-xl">
+        <div className="w-full h-[120px] bg-blue-950 rounded-xl">
           <img src={appData.icon} className="w-full h-full rounded-2xl object-cover" />
         </div>
 
-        <p className="font-bold text-white mt-5 text-center">{appData.name}</p>
+        <p className="font-bold text-white mt-3 text-center">{appData.name}</p>
       </button>
     )
   }
@@ -47,8 +47,8 @@ export function AppItem({ store, appId }: Props): JSX.Element {
       className="flex flex-col w-[150px] h-[180px] hover:cursor-pointer"
       onClick={handleGoToAppDetails}
     >
-      <div className="w-full h-[150px] bg-blue-950 rounded-2xl">
-        <img src={appData.icon} className="w-full h-full rounded-2xl object-cover" />
+      <div className="w-full h-[120px] bg-blue-950 rounded-md">
+        <img src={appData.icon} className="w-full h-full rounded-md object-cover" />
       </div>
 
       <p className="font-bold text-white mt-1 text-center">{appData.name}</p>
