@@ -62,7 +62,9 @@ export function AppDetailsPage(): JSX.Element {
       <div className="flex gap-5 mt-5">
         <img src={appData.icon} className="w-[200px] h-[200px] rounded-2xl object-cover" />
         <div className="flex flex-col gap-1">
-          <h1 className="font-bold text-white text-4xl">{appData.name}</h1>
+          <h1 className="font-bold text-white text-4xl">
+            #{appId} - {appData.name}
+          </h1>
           <p className="text-white">{appData.description}</p>
           <p className="text-gray-400">{appData.publisher}</p>
 

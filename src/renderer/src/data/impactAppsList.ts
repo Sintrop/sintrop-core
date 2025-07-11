@@ -3,19 +3,19 @@ import FreeEducationCenterJson from '../../../impactApps/testnet/FreeEducationCe
 
 export const impactAppsList = [
   {
-    id: 2,
+    id: 4,
     name: 'Global Plant Catalog',
     mainnet: false,
     contracts: [
       {
         name: 'Global Plant Catalog',
         abi: GlobalPlantCatalogJson.abi,
-        address: '0x7412c48186D880eb2a37c08726A631da4cd81b99'
+        address: '0x4d956b25c27bb91f1850c1F711843Aff72B77204'
       }
     ]
   },
   {
-    id: 3,
+    id: 5,
     name: 'Education Center',
     mainnet: false,
     contracts: [
