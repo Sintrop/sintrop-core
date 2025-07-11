@@ -1,13 +1,17 @@
 import { Icon, IconName } from '@renderer/components/Icon/Icon'
-import React, { JSX, useState } from 'react'
+import { JSX } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
+//import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 export function Nav(): JSX.Element {
   return (
     <nav className="flex flex-col">
-      <NavItem icon="dashboard" label="desktop" path="/" />
+      <NavItem icon="dashboard" label="Overview" path="/" />
+      <NavItem icon="dashboard" label="Impact Apps" path="/impact-apps" />
+      <NavItem icon="dashboard" label="App Store" path="/app-store" />
+      <NavItem icon="dashboard" label="Network" path="/network" />
+      <NavItem icon="dashboard" label="IPFS" path="/ipfs" />
     </nav>
   )
 }
@@ -36,34 +40,34 @@ function NavItem({ label, path, icon }: NavItemProps): JSX.Element {
   )
 }
 
-interface DropdownMenuProps {
-  label: string
-  icon?: IconName
-  children: React.ReactNode
-}
-function DropdownMenu({ label, icon, children }: DropdownMenuProps): JSX.Element {
-  const { t } = useTranslation()
-  const [menuOpen, setMenuOpen] = useState(false)
+// interface DropdownMenuProps {
+//   label: string
+//   icon?: IconName
+//   children: React.ReactNode
+// }
+// function DropdownMenu({ label, icon, children }: DropdownMenuProps): JSX.Element {
+//   const { t } = useTranslation()
+//   const [menuOpen, setMenuOpen] = useState(false)
 
-  function toggleOpenMenu(): void {
-    setMenuOpen((value) => !value)
-  }
+//   function toggleOpenMenu(): void {
+//     setMenuOpen((value) => !value)
+//   }
 
-  return (
-    <div className={`flex flex-col`}>
-      <button
-        className="flex items-center justify-between w-full gap-3 py-3 text-white font-semibold hover:cursor-pointer"
-        onClick={toggleOpenMenu}
-      >
-        <div className="flex items-center gap-3">
-          {icon && <Icon name={icon} />}
-          {t(label)}
-        </div>
+//   return (
+//     <div className={`flex flex-col`}>
+//       <button
+//         className="flex items-center justify-between w-full gap-3 py-3 text-white font-semibold hover:cursor-pointer"
+//         onClick={toggleOpenMenu}
+//       >
+//         <div className="flex items-center gap-3">
+//           {icon && <Icon name={icon} />}
+//           {t(label)}
+//         </div>
 
-        {menuOpen ? <FaChevronUp color="white" /> : <FaChevronDown color="white" />}
-      </button>
+//         {menuOpen ? <FaChevronUp color="white" /> : <FaChevronDown color="white" />}
+//       </button>
 
-      {menuOpen && <div className="flex flex-col ml-10">{children}</div>}
-    </div>
-  )
-}
+//       {menuOpen && <div className="flex flex-col ml-10">{children}</div>}
+//     </div>
+//   )
+// }

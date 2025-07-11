@@ -1,4 +1,4 @@
-appId: com.electron.app
+appId: com.sintropcore
 productName: sintrop-core
 directories:
   buildResources: build

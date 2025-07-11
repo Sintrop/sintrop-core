@@ -1,6 +1,8 @@
 import { JSX } from 'react'
 import { useNavigate } from 'react-router-dom'
 import LogoSintrop from '../../assets/images/white-logo.png'
+import { ConnectButton } from './components/ConnectButton'
+import { ChainSwitch } from './components/ChainSwitch'
 
 export function Header(): JSX.Element {
   const navigate = useNavigate()
@@ -16,7 +18,10 @@ export function Header(): JSX.Element {
           <img src={LogoSintrop} alt="Logo Sintrop" className="w-32 h-10 object-contain" />
         </button>
 
-        <div className="flex items-center gap-5"></div>
+        <div className="flex items-center gap-5">
+          <ChainSwitch />
+          <ConnectButton />
+        </div>
       </div>
     </header>
   )
