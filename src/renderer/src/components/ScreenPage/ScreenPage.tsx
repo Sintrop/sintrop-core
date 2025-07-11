@@ -5,7 +5,6 @@ import { PageTitle } from '../PageTitle/PageTitle'
 import { InfoBar } from './components/InfoBar'
 import { NavBtns } from './components/NavBtns'
 import { useChainId } from 'wagmi'
-import { useTranslation } from 'react-i18next'
 
 interface Props {
   pageTitle: string
@@ -14,7 +13,6 @@ interface Props {
 
 export function ScreenPage({ children, pageTitle }: Props): JSX.Element {
   const chainId = useChainId()
-  const { t } = useTranslation()
 
   return (
     <>

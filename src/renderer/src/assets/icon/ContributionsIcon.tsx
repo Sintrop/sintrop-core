@@ -1,5 +1,6 @@
 import { IconBaseProps } from '@renderer/components/Icon/Icon'
 import Contributions from './contributions.png'
+import { JSX } from 'react'
 
 export function ContributionsIcon({ size = 20 }: IconBaseProps): JSX.Element {
   return (

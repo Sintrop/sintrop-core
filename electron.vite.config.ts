@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { resolve } from 'path'
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite'
+//@ts-ignore
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 

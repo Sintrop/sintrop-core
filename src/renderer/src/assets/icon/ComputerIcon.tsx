@@ -1,4 +1,5 @@
 import { IconBaseProps } from '@renderer/components/Icon/Icon'
+import { JSX } from 'react'
 
 export function ComputerIcon({ color = 'white', size = 20 }: IconBaseProps): JSX.Element {
   return (

@@ -42,6 +42,7 @@ export function ContractItem({ address, appId }: Props): JSX.Element {
         onClick={toggleShowMethods}
       >
         <p className="text-white">
+          {/* @ts-ignore */}
           {address} {contract && `- (${contract.name})`}
         </p>
       </button>
