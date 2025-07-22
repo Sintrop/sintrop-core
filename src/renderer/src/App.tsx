@@ -1,11 +1,14 @@
+import { SettingsProvider } from './contexts/SettingsContext'
 import { WagmiProviderContainer } from './providers/wagmi'
 import { AppRoutes } from './routes'
 
 function App(): React.JSX.Element {
   return (
-    <WagmiProviderContainer>
-      <AppRoutes />
-    </WagmiProviderContainer>
+    <SettingsProvider>
+      <WagmiProviderContainer>
+        <AppRoutes />
+      </WagmiProviderContainer>
+    </SettingsProvider>
   )
 }
 

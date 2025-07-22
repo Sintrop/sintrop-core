@@ -4,16 +4,7 @@ import { http, WagmiProvider, createConfig } from 'wagmi'
 import { metaMask } from 'wagmi/connectors'
 import { sequoia } from '../chains/sequoia'
 import { sintrop } from '@renderer/chains/sintrop'
-
-const config = createConfig({
-  ssr: false, // Make sure to enable this for server-side rendering (SSR) applications.
-  chains: [sequoia, sintrop],
-  connectors: [metaMask()],
-  transports: {
-    [sequoia.id]: http(),
-    [sintrop.id]: http()
-  }
-})
+import { useSettingsContext } from '@renderer/hooks/useSettingsContext'
 
 const client = new QueryClient()
 
@@ -22,6 +13,18 @@ export function WagmiProviderContainer({
 }: {
   children: React.ReactNode
 }): React.JSX.Element {
+  const { rpcUrl, sequoiaRpcUrl } = useSettingsContext()
+
+  const config = createConfig({
+    ssr: false,
+    chains: [sequoia, sintrop],
+    connectors: [metaMask()],
+    transports: {
+      [sequoia.id]: http(sequoiaRpcUrl),
+      [sintrop.id]: http(rpcUrl)
+    }
+  })
+
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={client}>{children}</QueryClientProvider>
