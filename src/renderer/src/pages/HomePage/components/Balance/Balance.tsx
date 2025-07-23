@@ -28,7 +28,7 @@ export function Balance(): JSX.Element {
   return (
     <div>
       <div className="flex flex-col w-[400px] rounded-2xl p-5 bg-card-2 relative">
-        <p className="text-gray-300 text-sm">{t('balance')}</p>
+        <p className="text-gray-300 text-sm">{t('overview.balance')}</p>
 
         <div className="flex items-center gap-2 my-5">
           <img src={ImageCoin} className="w-10 h-10 object-contain" />
@@ -58,7 +58,8 @@ export function Balance(): JSX.Element {
 
         <div className="flex w-full justify-end items-center gap-3">
           <p className="text-gray-300 text-xs">
-            {t('lastUpdate')}: {isToday(lastUpdate) ? t('today') : format(lastUpdate, 'dd/MM/yyyy')}{' '}
+            {t('overview.lastUpdate')}:{' '}
+            {isToday(lastUpdate) ? t('today') : format(lastUpdate, 'dd/MM/yyyy')}{' '}
             {format(lastUpdate, 'kk:mm')}
           </p>
 
@@ -73,7 +74,7 @@ export function Balance(): JSX.Element {
 
         {isDisconnected && (
           <p className="font-semibold text-white absolute top-3 right-3">
-            {t('youAreNotConnected')}!
+            {t('overview.youAreNotConnected')}!
           </p>
         )}
       </div>

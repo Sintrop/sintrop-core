@@ -1,3 +1,14 @@
 {
-    "helloWorld": "Hello World"
+  "overview": {
+    "title": "Overview",
+    "balance": "Balance",
+    "lastUpdate": "Last update",
+    "youAreNotConnected": "You are not connected",
+    "sendTransaction": "Send transaction",
+    "typeHere": "Type here",
+    "to": "To",
+    "value": "Value",
+    "insufficientBalance": "Insufficient Balance",
+    "send": "Send"
+  }
 }

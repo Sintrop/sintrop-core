@@ -41,22 +41,22 @@ export function SendTransaction(): JSX.Element {
 
   return (
     <div className="flex flex-col">
-      <p className="text-gray-400 text-sm">{t('sendTransaction')}</p>
+      <p className="text-gray-400 text-sm">{t('overview.sendTransaction')}</p>
 
       <form className="flex flex-col w-[400px]" onSubmit={handleSendTransaction}>
-        <label className="text-white text-sm">{t('to')}:</label>
+        <label className="text-white text-sm">{t('overview.to')}:</label>
         <input
           className="w-full h-10 rounded-2xl px-5 bg-card-2 text-white"
-          placeholder={t('typeHere')}
+          placeholder={t('overview.typeHere')}
           value={to}
           onChange={(e) => setTo(e.target.value)}
           required
         />
 
-        <label className="text-white text-sm mt-3">{t('value')}:</label>
+        <label className="text-white text-sm mt-3">{t('overview.value')}:</label>
         <input
           className="w-full h-10 rounded-2xl px-5 bg-card-2 text-white"
-          placeholder={t('typeHere')}
+          placeholder={t('overview.typeHere')}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           type="number"
@@ -64,7 +64,7 @@ export function SendTransaction(): JSX.Element {
         />
 
         {insufficientBalance && (
-          <p className="text-red-500 font-semibold mt-1">{t('insufficientBalance')}!</p>
+          <p className="text-red-500 font-semibold mt-1">{t('overview.insufficientBalance')}!</p>
         )}
 
         <button
@@ -72,7 +72,7 @@ export function SendTransaction(): JSX.Element {
           type="submit"
           disabled={insufficientBalance || !to.trim() || !value.trim()}
         >
-          {t('send')}
+          {t('overview.send')}
         </button>
       </form>
 
