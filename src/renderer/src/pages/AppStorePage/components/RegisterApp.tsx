@@ -21,8 +21,9 @@ export function RegisterApp(): JSX.Element {
   const [displayLoadingTx, setDisplayLoadingTx] = useState(false)
 
   const chainId = useChainId()
-  const { writeContract, data: hash, isPending } = useWriteContract()
+  const { writeContract, data: hash, isPending, error } = useWriteContract()
   const { isLoading, isSuccess, isError } = useWaitForTransactionReceipt({ hash })
+  console.log(error)
 
   function toggleOpenForm(): void {
     setOpenForm((value) => !value)

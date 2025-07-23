@@ -57,6 +57,9 @@ export function AppDetailsPage(): JSX.Element {
     )
   }
 
+  const negativeVotes = parseInt(formatUnits(BigInt(appData.negativeVotes), 0))
+  const positiveVotes = parseInt(formatUnits(BigInt(appData.positiveVotes), 0))
+
   return (
     <ScreenPage pageTitle={t('appDetails')}>
       <div className="flex gap-5 mt-5">
@@ -68,14 +71,12 @@ export function AppDetailsPage(): JSX.Element {
           <p className="text-white">{appData.description}</p>
           <p className="text-gray-400">{appData.publisher}</p>
 
-          <div className="flex gap-5 mt-3">
+          <div className="flex gap-5 mt-3 items-center">
             <button
               className="w-[150px] h-18 rounded-2xl flex flex-col items-center justify-center bg-red-400 hover:cursor-pointer"
               onClick={() => handleVoteApp('down')}
             >
-              <p className="font-bold text-white text-xl">
-                {formatUnits(BigInt(appData.negativeVotes), 0)}
-              </p>
+              <p className="font-bold text-white text-xl">{negativeVotes}</p>
               <p className="text-white text-sm">{t('votesDown')}</p>
               <p className="text-gray-200 text-xs">{t('clickToVote')}</p>
             </button>
@@ -84,12 +85,14 @@ export function AppDetailsPage(): JSX.Element {
               className="w-[150px] h-18 rounded-2xl flex flex-col items-center justify-center bg-green-500 hover:cursor-pointer"
               onClick={() => handleVoteApp('up')}
             >
-              <p className="font-bold text-white text-xl">
-                {formatUnits(BigInt(appData.positiveVotes), 0)}
-              </p>
+              <p className="font-bold text-white text-xl">{positiveVotes}</p>
               <p className="text-white">{t('votesUp')}</p>
               <p className="text-gray-200 text-xs">{t('clickToVote')}</p>
             </button>
+
+            <p className="text-white">
+              Is impact app: {positiveVotes > negativeVotes ? 'true' : 'false'}
+            </p>
           </div>
         </div>
       </div>
