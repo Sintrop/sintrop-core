@@ -15,7 +15,7 @@ export function SendTransaction(): JSX.Element {
   const { data } = useBalance({ address })
   const { data: hash, sendTransaction, isPending } = useSendTransaction()
   const { isLoading, isSuccess, isError } = useWaitForTransactionReceipt({ hash })
-  
+
   const balance = data ? parseFloat(data.formatted) : 0
 
   useEffect(() => {

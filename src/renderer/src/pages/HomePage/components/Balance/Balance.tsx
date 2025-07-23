@@ -11,7 +11,7 @@ export function Balance(): JSX.Element {
   const { t } = useTranslation()
   const [viewBalance, setViewBalance] = useState(false)
   const [lastUpdate, setLastUpdate] = useState(new Date())
-  const { address } = useAccount()
+  const { address, isDisconnected } = useAccount()
   const { data, refetch, isLoading } = useBalance({ address })
 
   function toggleViewBalance(): void {
@@ -27,12 +27,12 @@ export function Balance(): JSX.Element {
 
   return (
     <div>
-      <div className="flex flex-col w-[400px] rounded-2xl p-5 bg-card-2">
+      <div className="flex flex-col w-[400px] rounded-2xl p-5 bg-card-2 relative">
         <p className="text-gray-300 text-sm">{t('balance')}</p>
 
         <div className="flex items-center gap-2 my-5">
           <img src={ImageCoin} className="w-10 h-10 object-contain" />
-          <p className="font-bold text-white text-xl">SINTROP</p>
+          <p className="font-bold text-white text-xl">SIN</p>
         </div>
 
         <div className="flex items-center gap-5">
@@ -70,6 +70,12 @@ export function Balance(): JSX.Element {
             <MdRefresh color="white" size={25} className={`${isLoading && 'animate-spin'}`} />
           </button>
         </div>
+
+        {isDisconnected && (
+          <p className="font-semibold text-white absolute top-3 right-3">
+            {t('youAreNotConnected')}!
+          </p>
+        )}
       </div>
     </div>
   )
