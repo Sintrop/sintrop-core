@@ -54,6 +54,31 @@
       "type": "event"
     },
     {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "contentId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "voter",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum FreeEducationCenter.VoteType",
+          "name": "voteType",
+          "type": "uint8"
+        }
+      ],
+      "name": "Voted",
+      "type": "event"
+    },
+    {
       "inputs": [
         {
           "internalType": "string",
