@@ -71,7 +71,7 @@ export function RegisterApp(): JSX.Element {
       </button>
 
       {openForm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-10">
           <div className="bg-card-2 p-6 rounded-2xl shadow-2xl w-[800px] h-[500px]">
             <div className="flex items-center justify-between w-full mb-5">
               <div className="w-5" />
