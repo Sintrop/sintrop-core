@@ -1,4 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
+import i18n from '@renderer/i18n'
 import { createContext, JSX, ReactNode, useEffect, useState } from 'react'
 
 interface ChangeOrAddUrlToListProps {
@@ -17,6 +18,7 @@ export interface SettingsContextProps {
   sequoiaRpcList: string[]
   addUrlToList: (data: ChangeOrAddUrlToListProps) => void
   changeBaseUrl: (data: ChangeOrAddUrlToListProps) => void
+  handleChangeLanguage: (lang: string) => void
 }
 
 interface SettingsProviderProps {
@@ -25,6 +27,7 @@ interface SettingsProviderProps {
 export const SettingsContext = createContext({} as SettingsContextProps)
 
 export function SettingsProvider({ children }: SettingsProviderProps): JSX.Element {
+  const { changeLanguage, language } = i18n
   const defaultIpfsGateway = import.meta.env.VITE_DEFAULT_IPFS_GATEWAY_URL
   const defaultIpfsApi = import.meta.env.VITE_DEFAULT_IPFS_API_URL
   const defaultRpc = import.meta.env.VITE_DEFAULT_RPC_URL
@@ -40,6 +43,7 @@ export function SettingsProvider({ children }: SettingsProviderProps): JSX.Eleme
   const [sequoiaRpcList, setSequoiaRpcList] = useState<string[]>([])
 
   useEffect(() => {
+    getSavedLanguage()
     getListUrls()
     getSetUrls()
   }, [])
@@ -127,6 +131,18 @@ export function SettingsProvider({ children }: SettingsProviderProps): JSX.Eleme
     if (type === 'sequoiaRpc') setSequoiaRpcUrl(url)
   }
 
+  async function getSavedLanguage(): Promise<void> {
+    const response = await localStorage.getItem('language')
+    if (response) {
+      if (language !== response) changeLanguage(response)
+    }
+  }
+
+  function handleChangeLanguage(lang: string): void {
+    changeLanguage(lang)
+    localStorage.setItem('language', lang)
+  }
+
   return (
     <SettingsContext.Provider
       value={{
@@ -139,7 +155,8 @@ export function SettingsProvider({ children }: SettingsProviderProps): JSX.Eleme
         sequoiaRpcList,
         sequoiaRpcUrl,
         addUrlToList,
-        changeBaseUrl
+        changeBaseUrl,
+        handleChangeLanguage
       }}
     >
       {children}

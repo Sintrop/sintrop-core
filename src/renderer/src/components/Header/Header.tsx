@@ -4,6 +4,7 @@ import LogoSintrop from '../../assets/images/white-logo.png'
 import { ConnectButton } from './components/ConnectButton'
 import { ChainSwitch } from './components/ChainSwitch'
 import { FaGear } from 'react-icons/fa6'
+import { LanguageSwitch } from './components/LanguageSwitch'
 
 export function Header(): JSX.Element {
   const navigate = useNavigate()
@@ -20,10 +21,11 @@ export function Header(): JSX.Element {
     <header className="w-screen h-[80px] bg-green-primary fixed z-10">
       <div className="px-10 flex items-center justify-between h-full">
         <button className="flex items-center gap-3 hover:cursor-pointer" onClick={handleBackToHome}>
-          <img src={LogoSintrop} alt="Logo Sintrop" className="w-32 h-10 object-contain" />
+          <img src={LogoSintrop} alt="Logo Sintrop" className="w-30 object-contain" />
         </button>
 
         <div className="flex items-center gap-5">
+          <LanguageSwitch />
           <ChainSwitch />
           <ConnectButton />
           <button onClick={handleGoToSettings} className="hover:cursor-pointer">
