@@ -29,12 +29,12 @@ export function IpfsPage(): JSX.Element {
 
   function handleCopyHash(): void {
     navigator.clipboard.writeText(hash)
-    alert(t('hashCopiedToClipboard'))
+    alert(t('ipfs.hashCopiedToClipboard'))
   }
 
   function handleCopyUrl(): void {
     navigator.clipboard.writeText(`${ipfsGatewayURL}/ipfs/${hash}`)
-    alert(t('hashCopiedToClipboard'))
+    alert(t('ipfs.urlCopiedToClipboard'))
   }
 
   async function handleUpload(): Promise<void> {
@@ -45,7 +45,7 @@ export function IpfsPage(): JSX.Element {
     if (response.success) {
       setHash(response.hash)
     } else {
-      alert(t('errorOnUploadFile'))
+      alert(t('ipfs.errorOnUploadFile'))
     }
     setLoading(false)
   }
@@ -53,17 +53,14 @@ export function IpfsPage(): JSX.Element {
   return (
     <ScreenPage pageTitle="IPFS">
       <div className="p-3 rounded-2xl bg-card-2 w-[500px] gap-5 flex flex-col">
-        <p className="text-gray-300">{t('uploadFileToIPFS')}</p>
-        <p className="text-white">
-          Use IPFS to hash and store files. Upload a photo or document and get back a unique hash
-          identifier to store at the blockchain.
-        </p>
+        <p className="text-gray-300">{t('ipfs.uploadFileToIPFS')}</p>
+        <p className="text-white">{t('ipfs.description')}</p>
         <div className="flex items-center gap-5">
           <button
             className="px-10 h-10 rounded-2xl w-fit bg-blue-500 text-white hover:cursor-pointer"
             onClick={handleSelectFile}
           >
-            {t('selectFile')}
+            {t('ipfs.selectFile')}
           </button>
           <input
             id="input-file"
@@ -81,7 +78,7 @@ export function IpfsPage(): JSX.Element {
           onClick={handleUpload}
           disabled={!file || file.length === 0 || loading}
         >
-          {loading ? <div className="w-7 h-7 bg-blue-500 animate-spin" /> : t('upload')}
+          {loading ? <div className="w-7 h-7 bg-blue-500 animate-spin" /> : t('ipfs.upload')}
         </button>
 
         {hash !== '' && (

@@ -14,9 +14,12 @@ export function InfoBar(): JSX.Element {
 
   return (
     <div className="flex items-center gap-8 w-full min-h-10 bg-green-700 px-5">
-      <DataItem label={t('currentBlock')} value={Intl.NumberFormat('pt-BR').format(blockNumber)} />
       <DataItem
-        label={t('gasPrice')}
+        label={t('infoBar.currentBlock')}
+        value={Intl.NumberFormat('pt-BR').format(blockNumber)}
+      />
+      <DataItem
+        label={t('infoBar.gasPrice')}
         value={Intl.NumberFormat('pt-BR').format(gasPrice)}
         suffix="GWEI"
       />

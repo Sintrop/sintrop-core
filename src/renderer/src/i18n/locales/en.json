@@ -1,4 +1,11 @@
 {
+  "header": {
+    "connectWallet": "Connect wallet"
+  },
+  "infoBar": {
+    "currentBlock": "Current block",
+    "gasPrice": "Gas price"
+  },
   "overview": {
     "title": "Overview",
     "balance": "Balance",
@@ -10,5 +17,43 @@
     "value": "Value",
     "insufficientBalance": "Insufficient Balance",
     "send": "Send"
+  },
+  "appStore": {
+    "registerNewApp": "Register new app",
+    "registerApp": "Register app",
+    "name": "Name",
+    "description": "Description",
+    "iconURL": "Icon URL",
+    "repositoryURL": "Repository URL",
+    "externalLink": "External link",
+    "contracts": "Contracts",
+    "typeHere": "Type here",
+    "typeAddressHere": "Type address here",
+    "addContract": "Add contract"
+  },
+  "appDetails": {
+    "title": "App details",
+    "linkCopiedToClipboard": "Link copied to clipboard",
+    "votesDown": "Negative votes",
+    "votesUp": "Positive votes",
+    "clickToVote": "Click to vote",
+    "repositoryURL": "Repository URL",
+    "externalLink": "External link",
+    "contracts": "Contracts"
+  },
+  "network": {
+    "currentBlock": "Current block",
+    "gasPrice": "Gas price",
+    "chainId": "Chain ID",
+    "blockExplorer": "Block explorer"
+  },
+  "ipfs": {
+    "uploadFileToIPFS": "Upload file to IPFS",
+    "description": "Use IPFS to hash and store files. Upload a photo or document and get back a unique hash identifier to store at the blockchain.",
+    "hashCopiedToClipboard": "Hash copied to clipboard",
+    "urlCopiedToClipboard": "URL copied to clipboard",
+    "errorOnUploadFile": "Error on upload file",
+    "selectFile": "Select file",
+    "upload": "Upload"
   }
 }

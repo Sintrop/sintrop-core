@@ -16,11 +16,11 @@ export function Stats(): JSX.Element {
     <div className="flex flex-col">
       <div className="flex flex-wrap gap-5">
         <DataItem
-          label={t('currentBlock')}
+          label={t('network.currentBlock')}
           value={Intl.NumberFormat('pt-BR').format(blockNumber)}
         />
         <DataItem
-          label={t('gasPrice')}
+          label={t('network.gasPrice')}
           value={Intl.NumberFormat('pt-BR').format(gasPrice)}
           suffix="GWEI"
         />

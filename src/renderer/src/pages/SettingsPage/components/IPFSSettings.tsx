@@ -1,10 +1,8 @@
 import { JSX, useState } from 'react'
 import { useSettingsContext } from '@renderer/hooks/useSettingsContext'
-import { useTranslation } from 'react-i18next'
 import { ModalAddUrl } from './ModalAddUrl'
 
 export function IPFSSettings(): JSX.Element {
-  const { t } = useTranslation()
   const { ipfsApiList, ipfsGatewayList, ipfsApiUrl, ipfsGatewayURL, addUrlToList, changeBaseUrl } =
     useSettingsContext()
   const [changeType, setChangeType] = useState<'api' | 'gateway'>('api')
@@ -30,7 +28,6 @@ export function IPFSSettings(): JSX.Element {
 
       <div className="flex flex-col gap-1 mt-5">
         <label className="text-white text-sm">API</label>
-        <p className="text-sm text-gray-300">{t('descApiIpfs')}</p>
         <select
           value={ipfsApiUrl}
           className="w-full h-10 px-3 rounded-2xl bg-card-1 text-white"
@@ -55,7 +52,6 @@ export function IPFSSettings(): JSX.Element {
 
       <div className="flex flex-col gap-1 mt-5">
         <label className="text-white text-sm">Gateway</label>
-        <p className="text-sm text-gray-300">{t('descGatewayIpfs')}</p>
         <select
           value={ipfsGatewayURL}
           className="w-full h-10 px-3 rounded-2xl bg-card-1 text-white"

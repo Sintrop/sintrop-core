@@ -1,10 +1,8 @@
 import { JSX, useState } from 'react'
 import { useSettingsContext } from '@renderer/hooks/useSettingsContext'
-import { useTranslation } from 'react-i18next'
 import { ModalAddUrl } from './ModalAddUrl'
 
 export function RpcSettings(): JSX.Element {
-  const { t } = useTranslation()
   const { rpcList, sequoiaRpcList, rpcUrl, sequoiaRpcUrl, addUrlToList, changeBaseUrl } =
     useSettingsContext()
   const [changeType, setChangeType] = useState<'rpc' | 'sequoiaRpc'>('rpc')
@@ -30,7 +28,6 @@ export function RpcSettings(): JSX.Element {
 
       <div className="flex flex-col gap-1 mt-5">
         <label className="text-white text-sm">Mainnet</label>
-        <p className="text-sm text-gray-300">{t('descRpcMainnet')}</p>
         <select
           value={rpcUrl}
           className="w-full h-10 px-3 rounded-2xl bg-card-1 text-white"
@@ -55,7 +52,6 @@ export function RpcSettings(): JSX.Element {
 
       <div className="flex flex-col gap-1 mt-5">
         <label className="text-white text-sm">Sequoia Testnet</label>
-        <p className="text-sm text-gray-300">{t('descSequoiaTestnetRpc')}</p>
         <select
           value={sequoiaRpcUrl}
           className="w-full h-10 px-3 rounded-2xl bg-card-1 text-white"

@@ -45,13 +45,13 @@ export function AppDetailsPage(): JSX.Element {
 
   function handleCopyLink(link: string): void {
     navigator.clipboard.writeText(link)
-    alert(t('linkCopiedToClipboard'))
+    alert(t('appDetails.linkCopiedToClipboard'))
   }
 
   const appData = data as AppProps
   if (!appData) {
     return (
-      <ScreenPage pageTitle={t('appDetails')}>
+      <ScreenPage pageTitle={t('appDetails.title')}>
         <div />
       </ScreenPage>
     )
@@ -61,7 +61,7 @@ export function AppDetailsPage(): JSX.Element {
   const positiveVotes = parseInt(formatUnits(BigInt(appData.positiveVotes), 0))
 
   return (
-    <ScreenPage pageTitle={t('appDetails')}>
+    <ScreenPage pageTitle={t('appDetails.title')}>
       <div className="flex gap-5 mt-5">
         <img src={appData.icon} className="w-[200px] h-[200px] rounded-2xl object-cover" />
         <div className="flex flex-col gap-1">
@@ -77,8 +77,8 @@ export function AppDetailsPage(): JSX.Element {
               onClick={() => handleVoteApp('down')}
             >
               <p className="font-bold text-white text-xl">{negativeVotes}</p>
-              <p className="text-white text-sm">{t('votesDown')}</p>
-              <p className="text-gray-200 text-xs">{t('clickToVote')}</p>
+              <p className="text-white text-sm">{t('appDetails.votesDown')}</p>
+              <p className="text-gray-200 text-xs">{t('appDetails.clickToVote')}</p>
             </button>
 
             <button
@@ -86,8 +86,8 @@ export function AppDetailsPage(): JSX.Element {
               onClick={() => handleVoteApp('up')}
             >
               <p className="font-bold text-white text-xl">{positiveVotes}</p>
-              <p className="text-white">{t('votesUp')}</p>
-              <p className="text-gray-200 text-xs">{t('clickToVote')}</p>
+              <p className="text-white">{t('appDetails.votesUp')}</p>
+              <p className="text-gray-200 text-xs">{t('appDetails.clickToVote')}</p>
             </button>
 
             <p className="text-white">
@@ -99,7 +99,7 @@ export function AppDetailsPage(): JSX.Element {
 
       <div className="flex flex-col">
         <div className="flex items-center gap-1">
-          <p className="text-white">{t('repositoryURL')}:</p>
+          <p className="text-white">{t('appDetails.repositoryURL')}:</p>
           <p
             className="text-blue-500 underline hover:cursor-pointer"
             onClick={() => handleCopyLink(appData.repositoryUrl)}
@@ -109,7 +109,7 @@ export function AppDetailsPage(): JSX.Element {
         </div>
 
         <div className="flex items-center gap-1">
-          <p className="text-white">{t('externalLink')}:</p>
+          <p className="text-white">{t('appDetails.externalLink')}:</p>
           <p
             className="text-blue-500 underline hover:cursor-pointer"
             onClick={() => handleCopyLink(appData.externalLink)}
@@ -120,7 +120,7 @@ export function AppDetailsPage(): JSX.Element {
       </div>
 
       <div className="flex flex-col gap-1">
-        <p className="text-gray-300 text-sm">{t('contracts')}</p>
+        <p className="text-gray-300 text-sm">{t('appDetails.contracts')}</p>
         <Contracts contracts={appData.contractAddresses} appId={parseInt(appId as string)} />
       </div>
 

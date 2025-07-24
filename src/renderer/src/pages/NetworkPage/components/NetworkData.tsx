@@ -46,7 +46,7 @@ function CardData({ title, chainId, rpc, testnet, explorer }: CardDataProps): JS
       </div>
 
       <div className="mt-3 mb-1 flex items-center gap-1">
-        <p className="text-white font-semibold">{t('chainId')}:</p>
+        <p className="text-white font-semibold">{t('network.chainId')}:</p>
         <p className="text-white">{chainId}</p>
       </div>
       <div className="mb-1 flex items-center gap-1">
@@ -54,7 +54,7 @@ function CardData({ title, chainId, rpc, testnet, explorer }: CardDataProps): JS
         <p className="text-white">{rpc}</p>
       </div>
       <div className="mb-1 flex items-center gap-1">
-        <p className="text-white font-semibold">{t('blockExplorer')}:</p>
+        <p className="text-white font-semibold">{t('network.blockExplorer')}:</p>
         <p className="text-white">{explorer}</p>
       </div>
     </div>
