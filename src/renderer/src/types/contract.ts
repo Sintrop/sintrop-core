@@ -14,6 +14,7 @@ export interface MethodAbiProps {
   type: string
   outputs: OutputProps[]
   anonymous: boolean
+  comments?: string[]
 }
 
 export interface InputMethodAbiProps {
@@ -22,6 +23,7 @@ export interface InputMethodAbiProps {
   type: string
   indexed: boolean
   components?: ComponentProps[]
+  comments?: string[]
 }
 
 export interface OutputProps {

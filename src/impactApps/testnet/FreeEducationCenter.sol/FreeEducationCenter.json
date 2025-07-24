@@ -58,12 +58,18 @@
         {
           "internalType": "string",
           "name": "_title",
-          "type": "string"
+          "type": "string",
+          "comments": [
+            "@param _title The title of the educational content. Cannot be empty and must be less than 50 characters."
+          ]
         },
         {
           "internalType": "string",
           "name": "_description",
-          "type": "string"
+          "type": "string",
+          "comments": [
+            "@param _description A brief description of the content. Cannot be empty and must be less than 500 characters."
+          ]
         },
         {
           "internalType": "string",
@@ -79,7 +85,10 @@
       "name": "addContent",
       "outputs": [],
       "stateMutability": "nonpayable",
-      "type": "function"
+      "type": "function",
+      "comments": [
+        "@notice Publishes a new educational content entry to the Free Education Center."
+      ]
     },
     {
       "inputs": [

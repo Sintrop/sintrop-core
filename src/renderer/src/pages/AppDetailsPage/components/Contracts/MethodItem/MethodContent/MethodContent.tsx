@@ -48,6 +48,19 @@ export function MethodContent({ method, contract }: Props): JSX.Element {
   if (methodType === 'view') {
     return (
       <div className="flex flex-col mt-2 pt-3 border-t border-gray-600">
+        {method.comments && (
+          <>
+            {method.comments.length > 0 && (
+              <>
+                {method.comments.map((comment, index) => (
+                  <p key={index} className="text-gray-300 text-sm">
+                    {comment}
+                  </p>
+                ))}
+              </>
+            )}
+          </>
+        )}
         {hasArgsToCall && (
           <HasArgsToCall args={argsToCall} setInputArgsToCall={handleSetInputArgsToCall} />
         )}
@@ -67,6 +80,19 @@ export function MethodContent({ method, contract }: Props): JSX.Element {
 
   return (
     <div className="flex flex-col mt-2 pt-3 border-t border-gray-600">
+      {method.comments && (
+        <>
+          {method.comments.length > 0 && (
+            <>
+              {method.comments.map((comment, index) => (
+                <p key={index} className="text-gray-300 text-sm">
+                  {comment}
+                </p>
+              ))}
+            </>
+          )}
+        </>
+      )}
       {hasArgsToCall && <HasArgsToCall args={argsToCall} setInputArgsToCall={setInputArgs} />}
 
       {showWriteContract && (
