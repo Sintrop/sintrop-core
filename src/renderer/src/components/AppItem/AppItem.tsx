@@ -3,13 +3,15 @@ import { AppProps } from '@renderer/types/app'
 import { APP_STORE_ADDRESS, SEQUOIA_APP_STORE_ADDRESS } from '@renderer/variables'
 import { JSX } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { formatUnits } from 'viem'
 import { useChainId, useReadContract } from 'wagmi'
 
 interface Props {
   appId: number
   store?: boolean
+  onlyImpactApp?: boolean
 }
-export function AppItem({ store, appId }: Props): JSX.Element {
+export function AppItem({ store, appId, onlyImpactApp }: Props): JSX.Element {
   const navigate = useNavigate()
   const chainId = useChainId()
   const { data } = useReadContract({
@@ -26,6 +28,11 @@ export function AppItem({ store, appId }: Props): JSX.Element {
   const appData = data as AppProps
 
   if (!appData) return <div />
+
+  const negativeVotes = parseInt(formatUnits(BigInt(appData.negativeVotes), 0))
+  const positiveVotes = parseInt(formatUnits(BigInt(appData.positiveVotes), 0))
+
+  if (onlyImpactApp && positiveVotes <= negativeVotes) return <div />
 
   if (store) {
     return (

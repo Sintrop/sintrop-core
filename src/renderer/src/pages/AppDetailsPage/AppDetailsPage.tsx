@@ -17,7 +17,11 @@ export function AppDetailsPage(): JSX.Element {
 
   const addressToUse = chainId === 250225 ? APP_STORE_ADDRESS : SEQUOIA_APP_STORE_ADDRESS
   const abiToUse = chainId === 250225 ? SEQUOIA_APP_STORE_ABI : SEQUOIA_APP_STORE_ABI
-  const { data, refetch } = useReadContract({
+  const {
+    data,
+    refetch,
+    isLoading: loadingApp
+  } = useReadContract({
     address: addressToUse,
     abi: abiToUse,
     functionName: 'getImpactApp',
@@ -49,6 +53,16 @@ export function AppDetailsPage(): JSX.Element {
   }
 
   const appData = data as AppProps
+  if (loadingApp) {
+    return (
+      <ScreenPage pageTitle={t('appDetails.title')}>
+        <div className="flex flex-col h-screen items-center justify-center">
+          <div className="w-30 h-30 bg-green-primary animate-spin" />
+        </div>
+      </ScreenPage>
+    )
+  }
+
   if (!appData) {
     return (
       <ScreenPage pageTitle={t('appDetails.title')}>
