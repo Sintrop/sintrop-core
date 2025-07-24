@@ -39,7 +39,10 @@
     "clickToVote": "Click to vote",
     "repositoryURL": "Repository URL",
     "externalLink": "External link",
-    "contracts": "Contracts"
+    "contracts": "Contracts",
+    "impactApp": "Impact app",
+    "notVerified": "Not verified",
+    "sourceCodeVerified": "Source code verified"
   },
   "network": {
     "currentBlock": "Current block",

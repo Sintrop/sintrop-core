@@ -6,6 +6,7 @@ import { useChainId } from 'wagmi'
 import { MethodItem } from './MethodItem/MethodItem'
 import { useTranslation } from 'react-i18next'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa6'
+import { Icon } from '@renderer/components/Icon/Icon'
 
 interface Props {
   address: string
@@ -47,10 +48,19 @@ export function ContractItem({ address, appId }: Props): JSX.Element {
         disabled={methods.length === 0}
         onClick={toggleShowMethods}
       >
-        <p className="text-white">
-          {address}
-          {contractName ? ` - (${contractName})` : ` - (${t('notVerified')})`}
-        </p>
+        <div className="flex items-center gap-5">
+          <p className="text-white">
+            {address}
+            {contractName ? ` - (${contractName})` : ` - (${t('appDetails.notVerified')})`}
+          </p>
+
+          {contractName && (
+            <div className="flex items-center gap-2">
+              <Icon name="verifiedOutline" size={30} color="#13ED37" />
+              <p className="text-[#13ED37] text-center">{t('appDetails.sourceCodeVerified')}</p>
+            </div>
+          )}
+        </div>
 
         {contractName && (
           <>{showMethods ? <FaChevronUp color="white" /> : <FaChevronDown color="white" />}</>

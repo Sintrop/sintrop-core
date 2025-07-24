@@ -5,6 +5,7 @@ import { JSX } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { formatUnits } from 'viem'
 import { useChainId, useReadContract } from 'wagmi'
+import { Icon } from '../Icon/Icon'
 
 interface Props {
   appId: number
@@ -31,13 +32,14 @@ export function AppItem({ store, appId, onlyImpactApp }: Props): JSX.Element {
 
   const negativeVotes = parseInt(formatUnits(BigInt(appData.negativeVotes), 0))
   const positiveVotes = parseInt(formatUnits(BigInt(appData.positiveVotes), 0))
+  const isImpactApp = positiveVotes > negativeVotes
 
-  if (onlyImpactApp && positiveVotes <= negativeVotes) return <div />
+  if (onlyImpactApp && !isImpactApp) return <div />
 
   if (store) {
     return (
       <button
-        className="flex flex-col rounded-2xl p-2 bg-card-2 w-[150px] h-[200px] overflow-hidden hover:cursor-pointer"
+        className="flex flex-col rounded-2xl p-2 bg-card-2 w-[150px] h-[200px] overflow-hidden hover:cursor-pointer relative"
         onClick={handleGoToAppDetails}
       >
         <div className="w-full h-[120px] bg-blue-950 rounded-xl">
@@ -45,13 +47,19 @@ export function AppItem({ store, appId, onlyImpactApp }: Props): JSX.Element {
         </div>
 
         <p className="font-bold text-white mt-3 text-center">{appData.name}</p>
+
+        {isImpactApp && (
+          <div className="absolute top-1 right-1">
+            <Icon name="verifiedFill" size={35} color="#13ED37" />
+          </div>
+        )}
       </button>
     )
   }
 
   return (
     <button
-      className="flex flex-col w-[150px] h-[180px] hover:cursor-pointer"
+      className="flex flex-col w-[150px] h-[180px] hover:cursor-pointer relative"
       onClick={handleGoToAppDetails}
     >
       <div className="w-full h-[120px] bg-blue-950 rounded-md">
@@ -59,6 +67,12 @@ export function AppItem({ store, appId, onlyImpactApp }: Props): JSX.Element {
       </div>
 
       <p className="font-bold text-white mt-1 text-center">{appData.name}</p>
+
+      {isImpactApp && (
+        <div className="absolute top-1 right-1">
+          <Icon name="verifiedFill" size={35} color="#13ED37" />
+        </div>
+      )}
     </button>
   )
 }

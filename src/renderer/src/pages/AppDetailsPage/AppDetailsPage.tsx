@@ -9,6 +9,7 @@ import { formatUnits } from 'viem'
 import { TransactionLoading } from '@renderer/components/TransactionLoading/TransactionLoading'
 import { AppProps } from '@renderer/types/app'
 import { Contracts } from './components/Contracts/Contracts'
+import { Icon } from '@renderer/components/Icon/Icon'
 
 export function AppDetailsPage(): JSX.Element {
   const { t } = useTranslation()
@@ -73,15 +74,25 @@ export function AppDetailsPage(): JSX.Element {
 
   const negativeVotes = parseInt(formatUnits(BigInt(appData.negativeVotes), 0))
   const positiveVotes = parseInt(formatUnits(BigInt(appData.positiveVotes), 0))
+  const isImpactApp = positiveVotes > negativeVotes
 
   return (
     <ScreenPage pageTitle={t('appDetails.title')}>
       <div className="flex gap-5 mt-5">
         <img src={appData.icon} className="w-[200px] h-[200px] rounded-2xl object-cover" />
         <div className="flex flex-col gap-1">
-          <h1 className="font-bold text-white text-4xl">
-            #{appId} - {appData.name}
-          </h1>
+          <div className="flex items-center gap-5">
+            <h1 className="font-bold text-white text-4xl">
+              #{appId} - {appData.name}
+            </h1>
+
+            {isImpactApp && (
+              <div className="flex items-center gap-2 p-2 rounded-2xl bg-card-2">
+                <Icon name="verifiedFill" size={30} color="#13ED37" />
+                <p className="text-white text-center">{t('appDetails.impactApp')}</p>
+              </div>
+            )}
+          </div>
           <p className="text-white">{appData.description}</p>
           <p className="text-gray-400">{appData.publisher}</p>
 
@@ -103,10 +114,6 @@ export function AppDetailsPage(): JSX.Element {
               <p className="text-white">{t('appDetails.votesUp')}</p>
               <p className="text-gray-200 text-xs">{t('appDetails.clickToVote')}</p>
             </button>
-
-            <p className="text-white">
-              Is impact app: {positiveVotes > negativeVotes ? 'true' : 'false'}
-            </p>
           </div>
         </div>
       </div>

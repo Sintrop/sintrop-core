@@ -14,6 +14,8 @@ import { AppStoreIcon } from '@renderer/assets/icon/AppStoreIcon'
 import { HomeIcon } from '@renderer/assets/icon/HomeIcon'
 import { IpfsIcon } from '@renderer/assets/icon/IpfsIcon'
 import { NetworkIcon } from '@renderer/assets/icon/NetworkIcon'
+import { VerifiedFillIcon } from '@renderer/assets/icon/VerifiedFill'
+import { VerifiedOutlineIcon } from '@renderer/assets/icon/VerifiedOutline'
 
 interface Props {
   name: IconName
@@ -41,7 +43,9 @@ const icons = {
   appStore: AppStoreIcon,
   home: HomeIcon,
   ipfs: IpfsIcon,
-  network: NetworkIcon
+  network: NetworkIcon,
+  verifiedFill: VerifiedFillIcon,
+  verifiedOutline: VerifiedOutlineIcon
 }
 
 export type IconName = keyof typeof icons
