@@ -13,8 +13,14 @@ export function SendTransaction(): JSX.Element {
 
   const { address } = useAccount()
   const { data } = useBalance({ address })
-  const { data: hash, sendTransaction, isPending } = useSendTransaction()
-  const { isLoading, isSuccess, isError } = useWaitForTransactionReceipt({ hash })
+  const { data: hash, sendTransaction, isPending, isError, error } = useSendTransaction()
+  const {
+    isLoading,
+    isSuccess,
+    isError: isErrorTx,
+    error: errorTx
+  } = useWaitForTransactionReceipt({ hash })
+  const errorMessage = error ? error.message : errorTx ? errorTx.message : ''
 
   const balance = data ? parseFloat(data.formatted) : 0
 
@@ -80,7 +86,8 @@ export function SendTransaction(): JSX.Element {
         <TransactionLoading
           close={() => setDisplayLoadingTx(false)}
           ok={transactionSuccess}
-          isError={isError}
+          isError={isError || isErrorTx}
+          errorMessage={errorMessage}
           isPending={isPending}
           isSuccess={isSuccess}
           loading={isLoading}

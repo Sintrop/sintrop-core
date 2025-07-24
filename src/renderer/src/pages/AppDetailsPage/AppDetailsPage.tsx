@@ -30,8 +30,14 @@ export function AppDetailsPage(): JSX.Element {
   })
 
   const [displayLoadingTx, setDisplayLoadingTx] = useState(false)
-  const { data: hash, writeContract, isPending } = useWriteContract()
-  const { isLoading, isSuccess, isError } = useWaitForTransactionReceipt({ hash })
+  const { data: hash, writeContract, isPending, error, isError } = useWriteContract()
+  const {
+    isLoading,
+    isSuccess,
+    isError: isErrorTx,
+    error: errorTx
+  } = useWaitForTransactionReceipt({ hash })
+  const errorMessage = error ? error.message : errorTx ? errorTx.message : ''
 
   function handleVoteApp(type: 'up' | 'down'): void {
     setDisplayLoadingTx(true)
@@ -147,9 +153,10 @@ export function AppDetailsPage(): JSX.Element {
 
       {displayLoadingTx && (
         <TransactionLoading
+          errorMessage={errorMessage}
           close={() => setDisplayLoadingTx(false)}
           ok={impactAppVoted}
-          isError={isError}
+          isError={isError || isErrorTx}
           isPending={isPending}
           isSuccess={isSuccess}
           loading={isLoading}

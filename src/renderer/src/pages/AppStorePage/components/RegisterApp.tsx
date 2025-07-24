@@ -21,9 +21,14 @@ export function RegisterApp(): JSX.Element {
   const [displayLoadingTx, setDisplayLoadingTx] = useState(false)
 
   const chainId = useChainId()
-  const { writeContract, data: hash, isPending, error } = useWriteContract()
-  const { isLoading, isSuccess, isError } = useWaitForTransactionReceipt({ hash })
-  console.log(error)
+  const { writeContract, data: hash, isPending, error, isError } = useWriteContract()
+  const {
+    isLoading,
+    isSuccess,
+    isError: isErrorTx,
+    error: errorTx
+  } = useWaitForTransactionReceipt({ hash })
+  const errorMessage = error ? error.message : errorTx ? errorTx.message : ''
 
   function toggleOpenForm(): void {
     setOpenForm((value) => !value)
@@ -163,7 +168,8 @@ export function RegisterApp(): JSX.Element {
           transactionHash={hash}
           loading={isLoading}
           isPending={isPending}
-          isError={isError}
+          isError={isError || isErrorTx}
+          errorMessage={errorMessage}
           isSuccess={isSuccess}
           ok={() => {
             setDisplayLoadingTx(false)
