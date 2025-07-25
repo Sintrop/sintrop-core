@@ -43,7 +43,9 @@
     "impactApp": "App de impacto",
     "notVerified": "Não verificado",
     "sourceCodeVerified": "Código fonte verificado",
-    "youAreNotConnected": "Você não está conectado"
+    "youAreNotConnected": "Você não está conectado",
+    "methods": "Methods",
+    "code": "Code"
   },
   "network": {
     "currentBlock": "Bloco atual",

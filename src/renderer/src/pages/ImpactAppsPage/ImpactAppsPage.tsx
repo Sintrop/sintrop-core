@@ -30,7 +30,7 @@ export function ImpactAppsPage(): JSX.Element {
   return (
     <ScreenPage pageTitle="Impact Apps">
       <div className="flex flex-col">
-        <div className="flex flex-wrap gap-5">
+        <div className="flex flex-wrap">
           {appsIds.map((item, index) => (
             <AppItem key={index} appId={item} store onlyImpactApp />
           ))}

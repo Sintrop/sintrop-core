@@ -24,7 +24,7 @@ export function AppStorePage(): JSX.Element {
         <RegisterApp />
       </div>
 
-      <div className="flex flex-wrap gap-5">
+      <div className="flex flex-wrap">
         {appsIds.map((item, index) => (
           <AppItem key={index} appId={item} store />
         ))}

@@ -5,6 +5,8 @@ import GlobalPlantCatalogJson from '../../../contracts/testnet/GlobalPlantCatalo
 import GlobalPlantCatalogCode from '../../../contracts/testnet/GlobalPlantCatalog.sol/GlobalPlantCatalog.sol?raw'
 import RcTestRewardJson from '../../../contracts/testnet/RcTestReward.sol/RcTestReward.json'
 import RcTestRewardCode from '../../../contracts/testnet/RcTestReward.sol/RcTestReward.sol?raw'
+import id4Json from '../../../contracts/testnet/HumansPeaceTreaty.sol/HumansPeaceTreaty.json'
+import id4Code from '../../../contracts/testnet/HumansPeaceTreaty.sol/HumansPeaceTreaty.sol?raw'
 
 export interface AppListProps {
   id: number
@@ -56,6 +58,19 @@ export const appsList: AppListProps[] = [
         abi: RcTestRewardJson.abi,
         address: '0x40D1e3babD5e71E6C4960A17704D9214cE153121',
         contractString: RcTestRewardCode
+      }
+    ]
+  },
+  {
+    id: 4,
+    name: 'Humans Peace Treaty',
+    mainnet: false,
+    contracts: [
+      {
+        name: 'Humans Peace Treaty',
+        abi: id4Json.abi,
+        address: '0x9F6F589dF286F64F7b27c369E3467f02403DcF35',
+        contractString: id4Code
       }
     ]
   }
