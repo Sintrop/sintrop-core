@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router-dom'
 export function Nav(): JSX.Element {
   return (
     <nav className="flex flex-col">
-      <NavItem icon="dashboard" label="Overview" path="/" />
+      <NavItem icon="rcStats" label="Overview" path="/" />
       <NavItem icon="dashboard" label="Impact Apps" path="/impact-apps" />
-      <NavItem icon="dashboard" label="App Store" path="/app-store" />
-      <NavItem icon="dashboard" label="Network" path="/network" />
-      <NavItem icon="dashboard" label="IPFS" path="/ipfs" />
+      <NavItem icon="appStore" label="App Store" path="/app-store" />
+      <NavItem icon="network" label="Network" path="/network" />
+      <NavItem icon="ipfs" label="IPFS" path="/ipfs" />
     </nav>
   )
 }

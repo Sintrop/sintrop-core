@@ -35,7 +35,7 @@ export function ConnectButton(): JSX.Element {
           </div>
         ) : (
           <>
-            {status === 'disconnected' && t('connectWallet')}
+            {status === 'disconnected' && t('header.connectWallet')}
             {status === 'connected' && (
               <div className="flex items-center gap-1">
                 <Jazzicon address={address} className="w-8 h-8" />

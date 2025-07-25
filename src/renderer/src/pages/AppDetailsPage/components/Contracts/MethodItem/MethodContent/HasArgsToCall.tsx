@@ -50,6 +50,20 @@ export function HasArgsToCall({ args, setInputArgsToCall }: Props): JSX.Element 
                 {arg?.name} ({arg?.type}):{' '}
               </p>
 
+              {arg.comments && (
+                <>
+                  {arg.comments.length > 0 && (
+                    <>
+                      {arg.comments.map((comment, index) => (
+                        <p className="text-gray-300 text-sm" key={index}>
+                          {comment}
+                        </p>
+                      ))}
+                    </>
+                  )}
+                </>
+              )}
+
               <ArgItem arg={arg} onChange={onChangeArgs} argsInput={argsInput} />
             </div>
           ))}

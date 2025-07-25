@@ -1,3 +1,73 @@
 {
-    "helloWorld": "Olá mundo"
+  "header": {
+    "connectWallet": "Conectar carteira"
+  },
+  "infoBar": {
+    "currentBlock": "Bloco atual",
+    "gasPrice": "Gas price"
+  },
+  "overview": {
+    "title": "Visão geral",
+    "balance": "Saldo",
+    "lastUpdate": "Última atualização",
+    "youAreNotConnected": "Você não está conectado",
+    "sendTransaction": "Enviar transação",
+    "typeHere": "Digite aqui",
+    "to": "Para",
+    "value": "Valor",
+    "insufficientBalance": "Saldo insuficiente",
+    "send": "Enviar"
+  },
+  "appStore": {
+    "registerNewApp": "Registrar novo app",
+    "registerApp": "Registrar app",
+    "name": "Nome",
+    "description": "Descrição",
+    "iconURL": "URL do ícone",
+    "repositoryURL": "URL do repositório",
+    "externalLink": "Link externo",
+    "contracts": "Contratos",
+    "typeHere": "Digite aqui",
+    "typeAddressHere": "Digite o endereço aqui",
+    "addContract": "Add. contrato"
+  },
+  "appDetails": {
+    "title": "Detalhes do app",
+    "linkCopiedToClipboard": "Link copiado para à área de transferência",
+    "votesDown": "Votos negativos",
+    "votesUp": "Votos positivoes",
+    "clickToVote": "Clique para votar",
+    "repositoryURL": "URL do repositório",
+    "externalLink": "Link externo",
+    "contracts": "Contratos",
+    "impactApp": "App de impacto",
+    "notVerified": "Não verificado",
+    "sourceCodeVerified": "Código fonte verificado",
+    "youAreNotConnected": "Você não está conectado"
+  },
+  "network": {
+    "currentBlock": "Bloco atual",
+    "gasPrice": "Gas price",
+    "chainId": "ID da rede",
+    "blockExplorer": "Explorador de blocos"
+  },
+  "ipfs": {
+    "uploadFileToIPFS": "Upload de arquivos para o IPFS",
+    "description": "Use o IPFS para fazer hash e armazenar arquivos. Carregue uma foto ou documento e receba um identificador de hash exclusivo para armazenar no blockchain..",
+    "hashCopiedToClipboard": "Hash copiado para à área de transferência",
+    "urlCopiedToClipboard": "URL copiado para à área de transferência",
+    "errorOnUploadFile": "Erro ao fazer o upload do arquivo",
+    "selectFile": "Selecionar arquivo",
+    "upload": "Upload"
+  },
+  "txLoading": {
+    "confirmInYourWallet": "Confirme em sua carteira",
+    "processingTransaction": "Processando transação",
+    "transactionCompletedSuccessfully": "Transação realizada com sucesso",
+    "transactionHash": "Hash da transação",
+    "continue": "Continuar",
+    "errorOnExecuteTransaction": "Erro ao realizar a transação",
+    "close": "Fechar",
+    "copiedToClipboard": "Copiado para à área de transferência"
+  }
 }

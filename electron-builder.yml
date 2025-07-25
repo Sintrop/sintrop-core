@@ -1,5 +1,5 @@
 appId: com.sintropcore
-productName: sintrop-core
+productName: Sintrop Core
 directories:
   buildResources: build
 files:
@@ -40,4 +40,4 @@ appImage:
 npmRebuild: false
 publish:
   provider: generic
-  url: https://example.com/auto-updates
+  url: https://sintrop.com
