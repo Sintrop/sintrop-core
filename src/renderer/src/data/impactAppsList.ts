@@ -1,6 +1,7 @@
 import FreeEducationCenterJson from '../../../impactApps/testnet/FreeEducationCenter.sol/FreeEducationCenter.json'
 import GlobalPlantCatalogJson from '../../../impactApps/testnet/GlobalPlantCatalog.sol/GlobalPlantCatalog.json'
 import RcTestRewardJson from '../../../impactApps/testnet/RcTestReward.sol/RcTestReward.json'
+import WhitepaperCenterJson from '../../../impactApps/testnet/WhitepaperCenter.sol/WhitepaperCenter.json'
 
 export const impactAppsList = [
   {
@@ -36,6 +37,18 @@ export const impactAppsList = [
         name: 'Rc Test Reward',
         abi: RcTestRewardJson.abi,
         address: '0x40D1e3babD5e71E6C4960A17704D9214cE153121'
+      }
+    ]
+  },
+  {
+    id: 6,
+    name: 'Whitepaper center',
+    mainnet: false,
+    contracts: [
+      {
+        name: 'Whitepaper center',
+        abi: WhitepaperCenterJson.abi,
+        address: '0x58Ba13620062Ef3500B397803B739CdEC5cc261B'
       }
     ]
   }
