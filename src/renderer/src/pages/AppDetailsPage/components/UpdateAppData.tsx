@@ -4,7 +4,7 @@ import { AppProps } from '@renderer/types/app'
 import { APP_STORE_ADDRESS, SEQUOIA_APP_STORE_ADDRESS } from '@renderer/variables'
 import { JSX, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { MdClose } from 'react-icons/md'
+import { MdClose, MdEdit } from 'react-icons/md'
 import { useAccount, useChainId, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 
 interface Props {
@@ -74,7 +74,11 @@ export function UpdateAppData({ appData, updatedApp }: Props): JSX.Element {
   return (
     <div>
       {appData.publisher === address && (
-        <button className="underline text-white hover:cursor-pointer" onClick={handleShowModal}>
+        <button
+          className="underline text-white hover:cursor-pointer flex items-center justify-center gap-1"
+          onClick={handleShowModal}
+        >
+          <MdEdit color="white" />
           {t('appDetails.updateAppData')}
         </button>
       )}

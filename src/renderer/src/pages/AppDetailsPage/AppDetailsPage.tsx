@@ -99,6 +99,8 @@ export function AppDetailsPage(): JSX.Element {
                 <p className="text-white text-center">{t('appDetails.impactApp')}</p>
               </div>
             )}
+
+            <UpdateAppData appData={appData} updatedApp={refetch} />
           </div>
           <p className="text-white">{appData.description}</p>
           <p className="text-gray-400">{appData.publisher}</p>
@@ -124,8 +126,6 @@ export function AppDetailsPage(): JSX.Element {
           </div>
         </div>
       </div>
-
-      <UpdateAppData appData={appData} updatedApp={refetch} />
 
       <div className="flex flex-col">
         <div className="flex items-center gap-1">
