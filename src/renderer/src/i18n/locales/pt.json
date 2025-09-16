@@ -29,7 +29,9 @@
     "contracts": "Contratos",
     "typeHere": "Digite aqui",
     "typeAddressHere": "Digite o endereço aqui",
-    "addContract": "Add. contrato"
+    "addContract": "Add. contrato",
+    "apps": "Apps",
+    "contract": "Contrato"
   },
   "appDetails": {
     "title": "Detalhes do app",
