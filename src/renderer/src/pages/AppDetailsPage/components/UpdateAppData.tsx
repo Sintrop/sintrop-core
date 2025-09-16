@@ -2,7 +2,7 @@ import { SEQUOIA_APP_STORE_ABI } from '@renderer/abis'
 import { TransactionLoading } from '@renderer/components/TransactionLoading/TransactionLoading'
 import { AppProps } from '@renderer/types/app'
 import { APP_STORE_ADDRESS, SEQUOIA_APP_STORE_ADDRESS } from '@renderer/variables'
-import { JSX, useState } from 'react'
+import { JSX, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MdClose } from 'react-icons/md'
 import { useAccount, useChainId, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
@@ -20,8 +20,22 @@ export function UpdateAppData({ appData, updatedApp }: Props): JSX.Element {
   const [icon, setIcon] = useState<string>(appData.icon)
   const [repositoryUrl, setRepositoryUrl] = useState<string>(appData.repositoryUrl)
   const [externalLink, setExternalLink] = useState<string>(appData.externalLink)
-
+  const [disableUpdate, setDisableUpdate] = useState(false)
   const [displayLoadingTx, setDisplayLoadingTx] = useState(false)
+
+  useEffect(() => {
+    if (
+      name.length < 1 ||
+      description.length < 1 ||
+      icon.length < 1 ||
+      repositoryUrl.length < 1 ||
+      externalLink.length < 1
+    ) {
+      setDisableUpdate(true)
+    } else {
+      setDisableUpdate(false)
+    }
+  }, [name, description, icon, repositoryUrl, externalLink])
 
   const chainId = useChainId()
   const { writeContract, data: hash, isPending, error, isError } = useWriteContract()
@@ -127,8 +141,9 @@ export function UpdateAppData({ appData, updatedApp }: Props): JSX.Element {
               </div>
 
               <button
-                className="px-10 w-full h-10 bg-green-primary text-white rounded-2xl mt-10 hover:cursor-pointer"
+                className="px-10 w-full h-10 bg-green-primary text-white rounded-2xl mt-10 hover:cursor-pointer disabled:cursor-default disabled:opacity-50 duration-200"
                 onClick={handleUpdateData}
+                disabled={disableUpdate}
               >
                 {t('appDetails.updateApp')}
               </button>
