@@ -10,6 +10,7 @@ import { TransactionLoading } from '@renderer/components/TransactionLoading/Tran
 import { AppProps } from '@renderer/types/app'
 import { Contracts } from './components/Contracts/Contracts'
 import { Icon } from '@renderer/components/Icon/Icon'
+import { UpdateAppData } from './components/UpdateAppData'
 
 export function AppDetailsPage(): JSX.Element {
   const { t } = useTranslation()
@@ -123,6 +124,8 @@ export function AppDetailsPage(): JSX.Element {
           </div>
         </div>
       </div>
+
+      <UpdateAppData appData={appData} />
 
       <div className="flex flex-col">
         <div className="flex items-center gap-1">
