@@ -9,8 +9,9 @@ import { useAccount, useChainId, useWaitForTransactionReceipt, useWriteContract 
 
 interface Props {
   appData: AppProps
+  updatedApp: () => void
 }
-export function UpdateAppData({ appData }: Props): JSX.Element {
+export function UpdateAppData({ appData, updatedApp }: Props): JSX.Element {
   const { t } = useTranslation()
   const { address } = useAccount()
   const [showModal, setShowModal] = useState(false)
@@ -147,6 +148,7 @@ export function UpdateAppData({ appData }: Props): JSX.Element {
           ok={() => {
             setDisplayLoadingTx(false)
             handleCloseModal()
+            updatedApp()
           }}
           close={() => setDisplayLoadingTx(false)}
         />

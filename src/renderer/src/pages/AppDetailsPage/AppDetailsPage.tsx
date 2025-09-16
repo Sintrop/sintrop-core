@@ -125,7 +125,7 @@ export function AppDetailsPage(): JSX.Element {
         </div>
       </div>
 
-      <UpdateAppData appData={appData} />
+      <UpdateAppData appData={appData} updatedApp={refetch} />
 
       <div className="flex flex-col">
         <div className="flex items-center gap-1">
