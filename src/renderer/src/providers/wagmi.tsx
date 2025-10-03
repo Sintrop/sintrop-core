@@ -19,26 +19,26 @@ export function WagmiProviderContainer({
     ssr: false,
     chains: [
       {
-        ...sequoia,
-        rpcUrls: {
-          default: {
-            http: [sequoiaRpcUrl]
-          }
-        }
-      },
-      {
         ...sintrop,
         rpcUrls: {
           default: {
             http: [rpcUrl]
           }
         }
+      },
+      {
+        ...sequoia,
+        rpcUrls: {
+          default: {
+            http: [sequoiaRpcUrl]
+          }
+        }
       }
     ],
     connectors: [metaMask()],
     transports: {
-      [sequoia.id]: http(),
-      [sintrop.id]: http()
+      [sintrop.id]: http(),
+      [sequoia.id]: http()
     }
   })
 
