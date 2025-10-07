@@ -1,6 +1,7 @@
 import FreeEducationCenterJson from '../../../impactApps/mainnet/FreeEducationCenter.sol/contract.json'
 import GlobalPlantCatalogJson from '../../../impactApps/mainnet/GlobalPlantCatalog.sol/GlobalPlantCatalog.json'
 import WhitepaperCenterJson from '../../../impactApps/mainnet/WhitepaperCenter.sol/WhitepaperCenter.json'
+import HumansPeaceTreatJson from '../../../impactApps/mainnet/HumansPeaceTreaty.sol/HumansPeaceTreaty.json'
 import RegenerationCreditJson from '../../../impactApps/mainnet/RegenerationCredit/RegenerationCredit.sol/RegenerationCredit.json'
 
 export const impactAppsList = [
@@ -47,7 +48,7 @@ export const impactAppsList = [
     contracts: [
       {
         name: 'Humans Peace Treaty',
-        abi: GlobalPlantCatalogJson.abi,
+        abi: HumansPeaceTreatJson.abi,
         address: '0xFD244507C6Da04A3Ab1df0ccf9341D84E76cd0a7'
       }
     ]
