@@ -1,6 +1,7 @@
 import FreeEducationCenterJson from '../../../impactApps/mainnet/FreeEducationCenter.sol/contract.json'
 import GlobalPlantCatalogJson from '../../../impactApps/mainnet/GlobalPlantCatalog.sol/GlobalPlantCatalog.json'
 import WhitepaperCenterJson from '../../../impactApps/mainnet/WhitepaperCenter.sol/WhitepaperCenter.json'
+import RegenerationCreditJson from '../../../impactApps/mainnet/RegenerationCredit/RegenerationCredit.sol/RegenerationCredit.json'
 
 export const impactAppsList = [
   {
@@ -48,6 +49,18 @@ export const impactAppsList = [
         name: 'Humans Peace Treaty',
         abi: GlobalPlantCatalogJson.abi,
         address: '0xFD244507C6Da04A3Ab1df0ccf9341D84E76cd0a7'
+      }
+    ]
+  },
+  {
+    id: 5,
+    name: 'Regeneration Credit',
+    mainnet: true,
+    contracts: [
+      {
+        name: 'Regeneration Credit',
+        abi: RegenerationCreditJson.abi,
+        address: '0x24fD0C0eA35F00625094795aa105fcE15cb6f1Ed'
       }
     ]
   }
