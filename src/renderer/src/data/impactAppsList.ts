@@ -1,54 +1,66 @@
-import FreeEducationCenterJson from '../../../impactApps/testnet/FreeEducationCenter.sol/FreeEducationCenter.json'
-import GlobalPlantCatalogJson from '../../../impactApps/testnet/GlobalPlantCatalog.sol/GlobalPlantCatalog.json'
-import RcTestRewardJson from '../../../impactApps/testnet/RcTestReward.sol/RcTestReward.json'
-import WhitepaperCenterJson from '../../../impactApps/testnet/WhitepaperCenter.sol/WhitepaperCenter.json'
+import FreeEducationCenterJson from '../../../impactApps/mainnet/FreeEducationCenter.sol/contract.json'
+import GlobalPlantCatalogJson from '../../../impactApps/mainnet/GlobalPlantCatalog.sol/GlobalPlantCatalog.json'
+import WhitepaperCenterJson from '../../../impactApps/mainnet/WhitepaperCenter.sol/WhitepaperCenter.json'
+import RegenerationCreditJson from '../../../impactApps/mainnet/RegenerationCredit/RegenerationCredit.sol/RegenerationCredit.json'
 
 export const impactAppsList = [
   {
     id: 1,
     name: 'Education Center',
-    mainnet: false,
+    mainnet: true,
     contracts: [
       {
         name: 'Education Center',
         abi: FreeEducationCenterJson.abi,
-        address: '0xbE3E071Be428d1c8dF9c0D039621EB05d6e38CCE'
+        address: '0x99aC4E9DDc4CEa1faaE6E4146103725726B76C5A'
       }
     ]
   },
   {
     id: 2,
-    name: 'Global Plant Catalog',
-    mainnet: false,
+    name: 'Whitepaper center',
+    mainnet: true,
     contracts: [
       {
-        name: 'Global Plant Catalog',
-        abi: GlobalPlantCatalogJson.abi,
-        address: '0x7Ce2aB8499DC9310557Bcba5302A160808d151aC'
+        name: 'Whitepaper center',
+        abi: WhitepaperCenterJson.abi,
+        address: '0x6bA408D226FEB1036995A1451904C2d0DFD803Ff'
       }
     ]
   },
   {
     id: 3,
-    name: 'Rc Test Reward',
-    mainnet: false,
+    name: 'Global Plant Catalog',
+    mainnet: true,
     contracts: [
       {
-        name: 'Rc Test Reward',
-        abi: RcTestRewardJson.abi,
-        address: '0x40D1e3babD5e71E6C4960A17704D9214cE153121'
+        name: 'Global Plant Catalog',
+        abi: GlobalPlantCatalogJson.abi,
+        address: '0xA8698ADc13B6b9dCA3a9AcdADB682fAB02c62EEf'
       }
     ]
   },
   {
-    id: 6,
-    name: 'Whitepaper center',
-    mainnet: false,
+    id: 4,
+    name: 'Humans Peace Treaty',
+    mainnet: true,
     contracts: [
       {
-        name: 'Whitepaper center',
-        abi: WhitepaperCenterJson.abi,
-        address: '0x58Ba13620062Ef3500B397803B739CdEC5cc261B'
+        name: 'Humans Peace Treaty',
+        abi: GlobalPlantCatalogJson.abi,
+        address: '0xFD244507C6Da04A3Ab1df0ccf9341D84E76cd0a7'
+      }
+    ]
+  },
+  {
+    id: 5,
+    name: 'Regeneration Credit',
+    mainnet: true,
+    contracts: [
+      {
+        name: 'Regeneration Credit',
+        abi: RegenerationCreditJson.abi,
+        address: '0x24fD0C0eA35F00625094795aa105fcE15cb6f1Ed'
       }
     ]
   }
