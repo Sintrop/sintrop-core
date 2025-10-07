@@ -1,5 +1,6 @@
 import { SEQUOIA_APP_STORE_ABI } from '@renderer/abis'
 import { TransactionLoading } from '@renderer/components/TransactionLoading/TransactionLoading'
+import { useSwitchChain } from '@renderer/hooks/useChainSwitch'
 import { APP_STORE_ADDRESS, SEQUOIA_APP_STORE_ADDRESS } from '@renderer/variables'
 import { JSX, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -21,6 +22,7 @@ export function RegisterApp(): JSX.Element {
   const [displayLoadingTx, setDisplayLoadingTx] = useState(false)
 
   const chainId = useChainId()
+  const { switchChain, isSuccess: isSuccessSwitch } = useSwitchChain()
   const { writeContract, data: hash, isPending, error, isError } = useWriteContract()
   const {
     isLoading,
@@ -53,6 +55,13 @@ export function RegisterApp(): JSX.Element {
     if (contracts.length === 0) return
 
     setDisplayLoadingTx(true)
+
+    await switchChain()
+    if (!isSuccessSwitch) {
+      setDisplayLoadingTx(false)
+      return
+    }
+
     writeContract({
       address: chainId === 250225 ? APP_STORE_ADDRESS : SEQUOIA_APP_STORE_ADDRESS,
       abi: chainId === 250225 ? SEQUOIA_APP_STORE_ABI : SEQUOIA_APP_STORE_ABI,

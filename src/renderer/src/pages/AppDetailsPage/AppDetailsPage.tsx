@@ -10,6 +10,7 @@ import { TransactionLoading } from '@renderer/components/TransactionLoading/Tran
 import { AppProps } from '@renderer/types/app'
 import { Contracts } from './components/Contracts/Contracts'
 import { Icon } from '@renderer/components/Icon/Icon'
+import { useSwitchChain } from '@renderer/hooks/useChainSwitch'
 
 export function AppDetailsPage(): JSX.Element {
   const { t } = useTranslation()
@@ -30,6 +31,7 @@ export function AppDetailsPage(): JSX.Element {
   })
 
   const [displayLoadingTx, setDisplayLoadingTx] = useState(false)
+  const { switchChain, isSuccess: isSuccessSwitch } = useSwitchChain()
   const { data: hash, writeContract, isPending, error, isError } = useWriteContract()
   const {
     isLoading,
@@ -39,8 +41,15 @@ export function AppDetailsPage(): JSX.Element {
   } = useWaitForTransactionReceipt({ hash })
   const errorMessage = error ? error.message : errorTx ? errorTx.message : ''
 
-  function handleVoteApp(type: 'up' | 'down'): void {
+  async function handleVoteApp(type: 'up' | 'down'): Promise<void> {
     setDisplayLoadingTx(true)
+
+    await switchChain()
+    if (!isSuccessSwitch) {
+      setDisplayLoadingTx(false)
+      return
+    }
+
     writeContract({
       address: addressToUse,
       abi: abiToUse,
