@@ -1,4 +1,5 @@
 import { TransactionLoading } from '@renderer/components/TransactionLoading/TransactionLoading'
+import { useSwitchChain } from '@renderer/hooks/useChainSwitch'
 import { FormEvent, JSX, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { parseEther } from 'viem'
@@ -13,6 +14,7 @@ export function SendTransaction(): JSX.Element {
 
   const { address } = useAccount()
   const { data } = useBalance({ address })
+  const { switchChain, isSuccess: isSuccessSwitch } = useSwitchChain()
   const { data: hash, sendTransaction, isPending, isError, error } = useSendTransaction()
   const {
     isLoading,
@@ -32,10 +34,17 @@ export function SendTransaction(): JSX.Element {
     }
   }, [balance, value])
 
-  function handleSendTransaction(e: FormEvent<HTMLFormElement>): void {
+  async function handleSendTransaction(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault()
 
     setDisplayLoadingTx(true)
+
+    await switchChain()
+    if (!isSuccessSwitch) {
+      setDisplayLoadingTx(false)
+      return
+    }
+
     sendTransaction({ to: to as `0x${string}`, value: parseEther(value) })
   }
 

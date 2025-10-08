@@ -3,6 +3,7 @@ import { JSX, useEffect, useState } from 'react'
 import { ContractListProps, MethodAbiProps } from '@renderer/types/contract'
 import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { TransactionLoading } from '@renderer/components/TransactionLoading/TransactionLoading'
+import { useSwitchChain } from '@renderer/hooks/useChainSwitch'
 
 interface Props {
   method: MethodAbiProps
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export function WriteMethodContract({ contract, method, args }: Props): JSX.Element {
+  const { switchChain } = useSwitchChain()
   const { writeContract, data: hash, isError, isPending, error } = useWriteContract()
   const {
     isLoading,
@@ -23,6 +25,9 @@ export function WriteMethodContract({ contract, method, args }: Props): JSX.Elem
 
   useEffect(() => {
     setDisplayLoadingTx(true)
+
+    switchChain()
+
     writeContract({
       //@ts-ignore
       address: contract.address,
